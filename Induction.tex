@@ -278,8 +278,160 @@ Where on hyperplanes $X_S \mapsto X_{\simga(S)}$. In $P_n$ only considering sing
 
 Consider the action $Z_2$ on $\mathbb{R}^n$ by reflection around the origin by $1\cdot (x_i)=-x_i$. One has $$1 \cdot H_{S_k} = H_{S,-k}.$$
 
+\section{Simplicial $\tilde{P}_n$ }
+
+
 
 \section{Nicola's consecutive terms}
+
+Consecuative case is related to the cyclic ordering on necklace curves.How to get from general msa function to consecuative case? 
+
+The number of extensions of $f:C_n \rightarrow \mathbb{Z}$ is constant and equal to $n$. For $C_1$ have $1$ extension and by inductions the total number is $n!$. 
+
+The ordering $<_f$ incorporates jon's epsilon graph construction Show this.  ie which of jons are from the consecuative case. 
+
+\begin{example}
+
+Consider $f:C_3 \rightarrow \mathbb{Z}$ such that $f(\{1,2\})=1, f(\{2,3\})=0$ and $f(\{1,2,3\})=1$.
+Reducing from epsilon graph for f.
+Possible $\epsilon^{-1}(1) = \{\{1\},\{2,23\},\{1,2,3,23,123\},\{1,2,23\}, \{1,2,12,23,123\}, \{1,2,23,123\}\}$
+of which there are $6$.
+
+\end{example}
+
+Let $C_n =\{  \{t,t+1,\dots , s\} |\quad \text{for all} \: 1\let\le s \le n\} $
+
+Let $Q_n  = \{ f: C_n \rightarrow \mathbb{Z}| MSA s.t. f(\{J\})=0 for all J \in [n]\}$
+
+$f$ being MSA means for all $A,B \in C_n$ such that $A \subset B$ and $B\setminus A \in C_n$
+
+$$0 \le f(B) -f(A)- f(B \setminus A) \le 1$$
+
+where 
+we have f-min condition $0 = f(B) -f(A)- f(B \setminus A)$
+we have f-max condition $1= f(B) -f(A)- f(B \setminus A)$
+
+Claim: $|Q_n|= n!$
+
+we show the claim by proving that each $f \in Q_{n-1}$ admits $n$ extensions $\tilde{f} \in Q_n$ (we say that $\tilde{f}$ extends $f$ if $\tilde{f}|_{Q_{n-1}} =f$. 
+
+\begin{proof}
+For $f \in C_{n-1}$, define the order relation $<_f$ on $[n-1]$ as follows:
+
+$t <_f s$ if and only if either $t<s$ and $f(\{t,\dots n-1\}) = f(\{t,\dots s-1\}) + f(\{s,\dots n-1\})$ (f-min) or  $s<t$ and $f(\{s,\dots n-1\}) = f(\{s,\dots t-1\}) + f(\{t,\dots n-1\}) +1$ (f-max).
+
+
+\begin{exercise} {exactly jons arguement for epsilon}
+If $t <_f s $ show that if $\tilde{f}(\{s,\dots n\}) = f(\{ s,\dots , n-1\}) +1 $, then $\tilde{f}(\{t,\dots n\}) = f(\{ t,\dots , n-1\}) +1 $
+(by msa)
+\end{exercise}
+
+Let $Q_n^{f} = \{\tilde{f} \in Q_n | \quad \tilde{f} \text{extends} f\}$
+
+One has $Q_{n-1} \xrightarrow[]{\epsilon} Q_n^{f}  $
+
+where $Q_n^{f} \subseteq Q_n$
+
+By the exercise $\psi$ is a bijection. 
+
+\begin{example}
+
+\end{example}
+
+\begin{example} {showing ordering}
+Let $n=3$ with $f \in C_2$ with $f(\{1\})=0,f(\{2\})=0$ and $f(\{1,2\})=1$
+Possible extensions $\tilde{f} \in C_3$
+
+$$\tilde{f}_A \: \text{where} f(\{1,2\})=1,f(\{2,3\})=0,f(\{1,2,3\})=1$$
+$$\tilde{f}_B \: \text{where} f(\{1,2\})=1,f(\{2,3\})=1,f(\{1,2,3\})=1$$
+$$\tilde{f}_C \: \text{where} f(\{1,2\})=1,f(\{2,3\})=1,f(\{1,2,3\})=2$$
+
+Consider $\{1,2\}$ 
+Is $t=2 <_f 1=s$? 
+take $s=1<2=t$ and $f(\{1,2\}) = f(\{1\}) + f(\{2\}) +1$
+$1=0+0+1$ therefore $t=2 <_f 1=s$. 
+
+$f(12)< \tilde{f}(123)$.
+
+Consider if $\tilde{f}(\{1,2,3\}) = f(\{1,2\}) +1$ (which true for $\tilde{f}_C$ from exercise) then $\tilde{f}(2,3) = f(\{2\}) +1$ ($1=0+1$).
+
+\end{example}
+
+\begin{example}
+Let $n=3$ with $f \in C_2$ with $f(\{1\})=0,f(\{2\})=0$ and $f(\{1,2\})=0$
+Possible extensions $\tilde{f} \in C_3$
+
+$$\tilde{f}_A \: \text{where} f(\{1,2\})=0,f(\{2,3\})=0,f(\{1,2,3\})=0$$
+$$\tilde{f}_B \: \text{where} f(\{1,2\})=0,f(\{2,3\})=0,f(\{1,2,3\})=1$$
+$$\tilde{f}_C \: \text{where} f(\{1,2\})=0,f(\{2,3\})=1,f(\{1,2,3\})=1$$
+
+Is $t=1 <_f 2=s$? 
+take $t=1<2=s$ and $f(\{1,2\}) = f(\{1\}) + f(\{2\}) $
+$0=0+0$ therefore $t=1 <_f 2=s$. 
+
+Given $t=1 <_f 2=s$
+
+$\tilde{f}(23) = f(2)+1$
+which is true for $\tilde{f}_C$ and $\tilde{f}(123)=f(12)+1$ which is true. 
+
+$f(12)< \tilde{f}(123)$.
+
+Consider if $\tilde{f}(\{1,2,3\}) = f(\{1,2\}) +1$ (which true for $\tilde{f}_C$ from exercise) then $\tilde{f}(2,3) = f(\{2\}) +1$ ($1=0+1$).
+
+\end{example}
+
+\begin{example}
+Let $n=4$
+$f(12)=0, f(23)=1,f(123)=1$
+Then $3 <_f 1 <_f 2$ ,
+
+For $3<_f 1$ we take $1<3$  and $f(123)=f(12)+f(3)+1$
+
+And for $1<_f 2$ take $1<2$ and $f(123)=f(1)+f(23)$
+
+These are those extensions of $f$ in $C_4$ extending by $4$.
+
+$\tilde{f}_A (\epsilon =(0,0,0)),\tilde{f}_A (\epsilon =(1,0,0)) ,\tilde{f}_A (\epsilon =(1,0,1)) ,\tilde{f}_A (\epsilon =(1,1,1))$  
+
+For each the condition inside max set of $\psi$ map.
+
+$$\tilde{f}_A \: \text{where}\: f(\{3,4\})=0,f(\{2,3,4\})=1,f(\{1,2,3,4\})=1$$
+
+The following do not hold $f(3)< \tilde{f}(34), f(23)< \tilde{f}(234), f(123)< \tilde{f}(1234)$
+
+$$\tilde{f}_B \: \text{where}\: f(\{3,4\})=1,f(\{2,3,4\})=1,f(\{1,2,3,4\})=1$$
+The following holds $0=f(3)< \tilde{f}(34)=1$
+$$\tilde{f}_C \: \text{where}\: f(\{3,4\})=1,f(\{2,3,4\})=1,f(\{1,2,3,4\})=2$$
+The following holds $0=f(3)< \tilde{f}(34)=1,f(123)< \tilde{f}(1234)$
+$$\tilde{f}_D \: \text{where}\: f(\{3,4\})=1,f(\{2,3,4\})=2,f(\{1,2,3,4\})=2$$
+The following holds $f(3)< \tilde{f}(34), f(23)< \tilde{f}(234), f(123)< \tilde{f}(1234)$. 
+
+
+
+$\psi(\tilde{f}_A)=4$
+$\psi(\tilde{f}_B)=3$
+$\psi(\tilde{f}_C)=1$
+$\psi(\tilde{f}_D)=2$
+\end{example}
+
+\begin{example}
+Take $n=4$, $f(12)=1,f(23)=0,f(123)=1$
+
+is $t=1<_f 2=s$? No 
+
+take $1<2$ and $f(123)= f(1,2-1)+f(23)$ (not true)
+
+Take $t=2<_f 1=s$ (True)
+is $1<2$ and $f(123)=f(1)+f(23)+1$
+
+Is $t=3<_f 1=s$, check $1<3$ and $f(123)=f(12)+f(3)$
+
+So $2<_f 1 <_f 3$ wrt $f$  (this is some permutation of $[n]$ $p_f$ map.
+
+\end{example}
+
+\end{proof}
+
 
 Is $\tilde{P_n}$ a glued together case of consecuative case? 
 how do $f: C_{n-1} \rightarrow \mathbb{Z}$ glue to get $f \in \tilde{P_n}$. 
@@ -425,6 +577,7 @@ $= f(\{t,\dots n-1\}) +1 $
 
 This exercise shows $  \psi : Q_n^{f} \rightarrow [n]$ is a bijection where (possible min see \cite{pagani2020geometry}) 
 $$ \tilde{f} \mapsto Max\{ p : f(\{p,\dots, n-1\}) < \tilde{f}(\{p,\dots, n\})  \} $$
+(maxwrt $<_f$)
 or if $f(\{p,\dots, n-1\}) = \tilde{f}(\{p,\dots, n-1\}) \overset{(*)}{=} \tilde{f}(\{p,\dots, n\}) $ where $(*)$ have $\tilde{f}|_{Q_{n-1}} = f$,
 $$ \tilde{f} mapsto \psi(f)=n$$  
 
