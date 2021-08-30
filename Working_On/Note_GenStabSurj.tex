@@ -1,0 +1,96 @@
+\begin{theorem}
+The map, 
+\begin{align*}
+    \psi_G: Q_G &\rightarrow \Sigma_G\\
+    \phi \in P &\mapsto \sigma_{\phi}(G) 
+\end{align*}
+
+is injective
+\begin{proof}
+
+See combo stability conditions line bundles (1).pdf For a different way to write the definition of $\sigma(G)$. Possibley this is derived from hte geometry in \cite{oda1979compactifications} however. Nicola knows this however. 
+\end{proof}
+
+\begin{example}{Attempt at showing not surjective}
+
+Take the graph of $3$ vertices and $5$ edges and give $\sigma_{\phi}(G)$ with oda inequalities, use $Aut(G)=\mathbb{Z}_2$ on these inequailites to show $\phi_1 < \phi_3$ and $\phi_1> \phi_3$. 
+
+%  let $\phi=(\frac{1}{3},\frac{1}{3},\frac{-2}{3})$
+
+Want to show $\psi_G$ is not surjective. Suppose it is surjective and there exists a $\phi$ such the $\sigma_{\phi}(G)=\sigma(G)$. 
+
+Take $\sigma(G)$ to be arbitrary. For $d \in \sigma(G)$ we have for $\Gamma_i,d_{i}^{'}$ with $d_{i}^{'} \in S^{-g}(G)$, $d$ takes the form of an element of in
+
+$$ \sigma^{'}(\Gamma_i,d_{i}^{'}
+):= \{ d \in S(G) \mid d= d_{i}^{'} + \sum_{l \in E(G\setminus \Gamma_{i})} \delta _{s(l)} \text{ for } s \in S_{\Gamma_{i}}  \}.$$
+
+\begin{remark}
+For $d \in \sigma(G)$ there might be overlap of $\Gamma_{i}$.
+\end{remark}
+
+
+As $d \in \sigma_{\phi}(G)=\sigma(G)$, so we can substitute this into 
+
+% Let $\phi \in V(G)$, we say $d \in S(G)$ is $\phi$-(semi)stable if
+
+\begin{equation*}\label{stabinequal}
+\Bigl| \sum_{v \in Vert(G_0)} d(v) - \phi(v)\Bigr| \underset{(\le)}{<}  \frac{\# (E(G\setminus G_0) \cap E(G\setminus G_0^{c}) )}{2},
+\end{equation*}
+
+for all $\emptyset \subsetneq G_0 \subsetneq G $, where $G_0$ is a complete subgraph and $G_0^{c}$ denotes the complete subgraph on the complement vertices to $G_0$. 
+
+% Denote the set of $\phi$-stable degrees by
+% $$\sigma_{\phi}(G):=\{d : \text{Vert}(G) \rightarrow \mathbb{Z} \mid \phi \text{-stable}\} \subseteq S(G).$$
+
+Choosing $G_0$ carefully can we contradict $\phi$? Consider $G_0$
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{Diagrams/surjectCut.png}
+    \caption{}
+    \label{fig:my_label}
+\end{figure}
+
+As working in total degree $0$ we have $d_1+d_3=-d_2$ and $\phi_1+ \phi_3= -\phi_2$
+
+and so can consider $$|d_2-\phi_2|<1.$$
+
+(How does $Aut(G)=\mathbb{Z}_2$ effect the labeling of $d_i$ and $\phi_i$? )
+
+IBD = \{(1,0,1), (0,1,1), (1,1,0), (2,0,0), (0,0,2)\}. 
+
+\begin{remark}
+For other spanning tree (the wedge) we have the elements of IBD $\{(2,0,0),(1,0,1), (0,0,2)\}$ which have no effect on $v_2$ in the Oda inequality, compared to the others where they sometimes change it. 
+\end{remark}
+
+Consider for $d_{i}$ and $\Gamma_i$ and $s \in S_{\Gamma_{i}} $ choice,
+
+$$|(d_{i}^{'} + \sum_{l \in E(G\setminus \Gamma_{i})} \delta _{s(l)})_2-\phi_2|<1.$$
+
+Choose $d$ so that its in the intersection of $\sigma^{'}(\Gamma_1,d^{'})$ and $\sigma^{'}(\Gamma_2,d^{''}$ for $\Gamma_1$ and $\Gamma_2$ in Figure \ref{tree} (is this possible?)
+
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.5]{Diagrams/spantreespair.png}
+    \caption{}
+    \label{tree}
+\end{figure}
+
+Would like something like (by choosing $\sum_{l \in E(G\setminus \Gamma_{i})} \delta _{s(l)}=(1,1,0)$ for $\Gamma_1$ and $\sum_{l \in E(G\setminus \Gamma_{2})} \delta _{s(l)}=(2,0,0)$ for $\Gamma_2$ for specific orientations $s$).
+
+$$|d_2^{'} +0 - \phi_2|<1$$
+
+and 
+
+$$|d_2^{''} + 1 - \phi_2|<1$$
+
+with $d_2^{'}=d_2^{''}$ (which is not necessarily true). Consider taking the spanning trees (wedge) and $\Gamma_1$ (as wedge has no effect on $v_2$ in IBD).
+
+Use axiom 1 to help, the element $d \in \sigma(G)$ is a complete representative.
+
+
+\end{example}
+
+% \begin{enumerate}
+%     \item To understand IBD in \cite{AN_2014}, we need to know the notion of a break divisors on metric graphs (which can be given by a weighted graph).
+% \end{enumerate}

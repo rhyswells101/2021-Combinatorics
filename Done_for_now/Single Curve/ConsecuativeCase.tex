@@ -1,0 +1,329 @@
+\documentclass[a3paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[Corollary]{corollary}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+
+\title{Combinatorics of fine compactified Jacobians}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{(From APR2) In $g=1$ there are $n!$ MSA functions}
+
+Given my coding results, I then proceeded to develop a background in the universal and single curve cases by studying \cite{pagani2020geometry}. Specifically I studied the single curve case in $g=1$, where \cite[Proposition 3.3]{pagani2020geometry} gives a combinatorial characterisation of fine compactified Jacobians. In particular we showed that, for a necklace graph with $n$ vertices and $n$ edges arranged in a single loop, there are $n!$ MSA functions. This was achieved by considering a ordering on $[n]$ obtained from the MSA condition. I will now introduce the notation and the necessary machinery in order to state this result. Denote the set of consecutive subsets of $[n]$ by 
+$$C_n =\{  \{t,t+1, \dots,s\} | \text{ for all} \; \: 1\le t \le s \le n\}. $$
+To ease notation let $\{t:s\}:=\{t,t+1,\dots , s\}$. 
+
+
+\begin{definition}
+Define the space of MSA functions on $C_n$ by $Q_n$ whose elements are functions $f: C_n \rightarrow \mathbb{Z}$ that satisfy equation (\ref{MSA7}) for all $I,J \in C_n$ with $I \cap J =\emptyset$ such that $I \cup J \in C_n$ and $f(\{j\})=0 \text{ for all } j \in [n]$ . And for $f \in Q_{n-1}$ define the set of extensions of $f$ by
+$$Q_n^{f} = \{\tilde{f} \in Q_n \; \mid \: \tilde{f}|_{Q_{n-1}} =f \text{ for } f \in Q_{n-1}\}.$$
+\end{definition}
+
+\begin{definition}\label{f_ordering}
+
+For $f \in Q_{n-1}$ define the following order relation $<_f$ on $[n-1]$ as,
+
+$t <_f s$ if and only if either 
+
+\begin{equation*}\label{QnCondition1}
+    t<s \quad \text{and} \quad  f(\{t:n-1\}) = f(\{t:s-1\}) + f(\{s:n-1\})
+\end{equation*}
+or  
+\begin{equation*}\label{QnCondition2}
+s<t \quad \text{and} \quad  f(\{s:n-1\}) = f(\{s:t-1\}) + f(\{t:n-1\}) +1.
+\end{equation*}
+\end{definition}
+
+The relation $<_f$ partitions $[n]$ into two subsets.
+
+\begin{lemma}\label{exercyclic}
+For $f \in Q_{n-1}$ and an extension $\tilde{f} \in Q_{n}^{f}$, if $t <_f s $ and if
+
+\begin{equation*}\label{assumpEqu}
+\tilde{f}(\{s:n\}) = f(\{ s:n-1\}) +1
+\end{equation*}
+
+then $\tilde{f}(\{t: n\}) = f(\{ t:n-1\}) +1.$ Similarly if $t <_f s $ and if $\tilde{f}(\{t:n\}) = f(\{ t:n-1\})$, then $\tilde{f}(\{s: n\}) = f(\{ s:n-1\}).$
+\end{lemma}
+
+\begin{proof}
+       (Omitted)
+\end{proof}
+
+Let $f  \in Q_{n-1}$. Define the map $  \psi : Q_n^{f} \rightarrow [n]$  where,
+
+\begin{equation*}\label{MaxOrdering}
+\tilde{f} \mapsto \text{Max}\{ p \in [n] : f(\{p: n-1\}) < \tilde{f}(\{p: n\}), \text{ with } \tilde{f} \in Q_n \}
+\end{equation*}
+with respect to the ordering $<_f$ on $[n]$, or if for all $p \in [n]$ we have $f(\{p: n-1\}) =  \tilde{f}(\{p: n\}) $, then set $\psi(\tilde{f})=n$.
+
+
+\begin{proposition}\label{main_biject}
+The map $  \psi$ is a bijection. 
+\end{proposition}
+\begin{sproof}
+Lemma $\ref{exercyclic}$ is used to state the injectivity and surjectivity follows by definition of $\psi$.
+\end{sproof}
+
+\begin{titlemize}{Research Questions}
+\item Generalise this construction to the universal case to find an explicit formula for the $|\tilde{P}_n|$ count.
+\end{titlemize}
+
+% and to develop theory for Jon's algorithmic approach in order
+
+
+\section{Ordered case for a single curve}
+
+We now focus on determining the number of fine compactified Jacobians for a single necklace curve $I_n$, as discussed in \cite[Prop.3.3]{pagani2020geometry}. Before discussing the calculation for $I_n$ let us first introduce notation and give examples.
+
+\begin{definition}
+The set of consecutive subsets of $[n]$ are denoted by 
+$$C_n =\{  \{t,t+1, \dots,s\} | \text{ for all} \; \: 1\le t \le s \le n\}. $$
+To ease notation we denoted the set $\{t,t+1,\dots , s\}$ as $\{t:s\}$. The space of MSA functions on $C_n$ are denoted by $Q_n  = \{ f: C_n \rightarrow \mathbb{Z}\;|\; f\text{ is MSA} \; \}.$
+\end{definition}
+
+ By translating it is enough to consider $f\in Q_n$ such that $f(\{j\})=0$ for all $j \in [n]$.
+
+\begin{definition}
+Denote the set of extensions of $f \in Q_{n-1}$  as
+$Q_n^{f} = \{\tilde{f} \in Q_n \; \mid \: \tilde{f}|_{Q_{n-1}} =f \text{ for } f \in Q_{n-1}\}.$
+\end{definition}
+
+We will show each $f\in Q_{n-1}$ has $n$ extensions and by induction $|Q_n|=n!$. As we are working with $C_n$ we add the following ordering on $[n]$ determined by the MSA condition on $f$.
+
+\begin{definition}\label{f_ordering}
+
+For $f \in Q_{n-1}$ define the following order relation $<_f$ on $[n-1]$ as,
+
+$t <_f s$ if and only if either 
+
+\begin{equation}\label{QnCondition1}
+    t<s \quad \text{and} \quad  f(\{t:n-1\}) = f(\{t:s-1\}) + f(\{s:n-1\})
+\end{equation}
+or  
+\begin{equation}\label{QnCondition2}
+s<t \quad \text{and} \quad  f(\{s:n-1\}) = f(\{s:t-1\}) + f(\{t:n-1\}) +1.
+\end{equation}
+\end{definition}
+
+\begin{remark}
+The ordering of Definition \ref{f_ordering} is discussed in \cite[Corollary 3.12]{pagani2020geometry}. Additionally the order $<_f$ is analogous to the $A \subseteq B$ condition for $f$-min/maximality for $\{t:s-1\} \subseteq \{t:n-1\}$ and $\{s:t-1\} \subseteq \{s:n-1\} $ respectively. We will see that for a single curve, lemma \ref{exercyclic} is analogous to showing if $ A \subseteq B$ is $f$-minimal and if $\epsilon(A)=1$ then $\epsilon(B)=1$ in the universal case (See Understanding Pn).  
+
+\end{remark}
+
+\begin{titlemize}{Question}
+\item Is this an "ordering" if is not reflexive or transitive? It doeshowever give the partition $[n]= I \sqcup J$. Possibly see \cite[Corrolory 3.12]{pagani2020geometry} for an explanation. 
+\item Is it an ordering in a sense that in the image of $\psi$, the elements $p \in [n]$ are determined by the standard ordering $<$?  
+\end{titlemize}
+
+The ordering can be stated on $[n-1]$ by considering a permutation $p_f : [n-1] \rightarrow [n-1]$ such that,
+$$p_f(1)<_f \cdots  <_f p_f(n-1).$$
+
+\begin{example}\label{n4_ordering_example}
+Let $n=4$ and let $f \in Q_3$ with $f(\{1,2\})=0, f(\{2,3\})=1,f(\{1,2,3\})=1$. We will show that $f$ has the ordering, 
+$3 <_f 1 <_f 2.$ To show $t=3<_f 1=s$ consider equation (\ref{QnCondition2}) where $1<3$ and $f(\{1,2,3\})=f(\{1,2\})+f(\{3\})+1.$ For $1<_f 2$ consider equation (\ref{QnCondition1}) where $1<2$ and $f(\{1,2,3\})=f(\{1\})+f(\{2,3\}).$ We therefore have the following assignment $p_f(1)=3$, $p_f(2)=1$ and $p_f(3)=2$.\\
+
+Instead let $f^{'}(\{1,2\})=1$, $f^{'}(\{2,3\})=0$ and $f^{'}(\{1,2,3\})=1$ we will see we get a different permutation of the ordering. We have $t=2<_{f^{'}} 1=s$ as $1<2$ and $f^{'}(\{1,2,3\})=f^{'}(\{1\})+f^{'}(\{2,3\})+1.$ and $t=3<_{f^{'}} 1=s$ as $1<3$ and $f^{'}(\{1,2,3\})=f^{'}(\{1,2\})+f^{'}(\{3\}).$ Hence $2<_{f^{'}} 1 <_{f^{'}} 3$ with $p_{f^{'}}(1)=2$, $p_{f^{'}}(2)=1$ and $p_{f^{'}}(3)=3$.
+
+\end{example}
+
+We now show $|Q_n^{f}|=n$ by showing the following map is bijective.
+
+\begin{proposition}\label{main_biject}
+For $f  \in Q_{n-1}$, the map $  \psi : Q_n^{f} \rightarrow [n]$  where,
+
+\begin{equation}\label{MaxOrdering}
+\tilde{f} \mapsto Max\{ p \in [n] : f(\{p: n-1\}) < \tilde{f}(\{p: n\}), \text{ with } \tilde{f} \in Q_n \}
+\end{equation}
+with respect to the ordering $<_f$ on $[n]$, or if for all $p \in [n]$
+
+$$f(\{p: n-1\}) =  \tilde{f}(\{p: n\}) $$
+
+then set $\psi(\tilde{f})=n$, is a bijection. 
+\end{proposition}
+
+\begin{titlemize}{Question}
+\item I am not sure if $\tilde{f} \in Q_n$ or $\tilde{f} \in Q_n^{f}$ in the Max{..} of the map (\ref{MaxOrdering})? 
+\end{titlemize}
+
+\begin{remark}
+For $\tilde{f} \in Q_n^{f}  $, we have $\tilde{f}|_{Q_{n-1}}=f$ and so $\tilde{f}(\{p:n-1\}) =f(\{p:n-1\})$. For ote the inequality $f(\{p: n-1\}) < \tilde{f}(\{p: n\})$ is equivalent to $f(\{p:n-1\})+1 = \tilde{f}(\{p:n\})$ as $\tilde{f}$ is MSA. By the ordering $<_f$ we can decompose $[n]$ into the following two sets,
+
+\begin{equation}
+ I=\{ p \in [n] : f(\{p:n-1\})+1 = \tilde{f}(\{p:n\}), \text{ with } \tilde{f} \in Q_n \}
+\end{equation}
+and
+\begin{equation}
+ J=\{ p \in [n] : f(\{p:n-1\}) = \tilde{f}(\{p:n\}), \text{ with } \tilde{f} \in Q_n \}. 
+\end{equation}
+
+\end{remark}
+
+\begin{example}
+Recall example \ref{n4_ordering_example} where $f \in Q_3$ with $f(\{1,2\})=0, f(\{2,3\})=1,f(\{1,2,3\})=1$ with the ordering
+$3 <_f 1 <_f 2$ on $[3]$, there we see that $3 \in I$ and $1,2 \in J$ and similarly for the later example $2 \in I$ and $1,3 \in J$.\\
+
+By definition of $\psi$ each $i \in [4]$ corresponds to an $\tilde{f} \in Q_n^{f}$. We now show which $\tilde{f}$ corresponds to which $i \in [4]$. In particular we will see that
+
+$$\psi(\tilde{f}_{p_f(4)})=4,\: \psi(\tilde{f}_{p_f(1)})=3,\: \psi(\tilde{f}_{p_f(2)})=1 \text{ and } \psi(\tilde{f}_{p_f(3)})=2.$$
+
+Let $\tilde{f}_{p_f(4)}$ be such that (dropping the subscript)
+
+$$\tilde{f}(\{3,4\})=0,\: \tilde{f}(\{2,3,4\})=1 \text{ and } \tilde{f}(\{1,2,3,4\})=1,$$
+
+and the following inequalities do not hold $f(\{3\})< \tilde{f}(\{3,4\})$, $f(\{1,2,3\})< \tilde{f}(\{1,2,3,4\})$ and $f(\{2,3\})< \tilde{f}(\{2,3,4\})$. Let $\tilde{f}_{p_f(1)}$ be such that 
+
+$$\tilde{f}(\{3,4\})=1,\: \tilde{f}(\{2,3,4\})=1 \text{ and } \tilde{f}(\{1,2,3,4\})=1,$$
+
+in particular the inequality $0=f(\{3\})< \tilde{f}(\{3,4\})=1$ holds. Let $\tilde{f}_{p_f(2)}$ be such that 
+
+$$\tilde{f}(\{3,4\})=1,\tilde{f}(\{2,3,4\})=1,\tilde{f}(\{1,2,3,4\})=2,$$
+
+and the following inequalities $0=f(\{3\})< \tilde{f}(\{3,4\})=1$ and $f(\{1,2,3\})< \tilde{f}(\{1,2,3,4\})$ hold. Finally let $\tilde{f}_{p_f(3)}$ take the values
+
+$$\tilde{f}(\{3,4\})=1,\tilde{f}(\{2,3,4\})=2,\tilde{f}(\{1,2,3,4\})=2,$$
+
+here we have $f(\{3\})< \tilde{f}(\{3,4\})$, $f(\{2,3\})< \tilde{f}(\{2,3,4\})$ and  $f(\{1,2,3\})< \tilde{f}(\{1,2,3,4\})$. 
+
+\end{example}
+
+By giving the maximum and minimum element respectively, the ordering $<_f$ completely determines the sets $I$ and $J$ by the following lemma. 
+
+\begin{lemma}\label{exercyclic}
+For $f \in Q_{n-1}$ and $\tilde{f} \in Q_{n}^{f}$ an extension, if $t <_f s $ and if
+
+\begin{equation}\label{assumpEqu}
+\tilde{f}(\{s:n\}) = f(\{ s:n-1\}) +1
+\end{equation}
+
+then $\tilde{f}(\{t: n\}) = f(\{ t:n-1\}) +1.$ Similarly if $t <_f s $ and if $\tilde{f}(\{t:n\}) = f(\{ t:n-1\})$, then $\tilde{f}(\{s: n\}) = f(\{ s:n-1\}).$
+\end{lemma}
+
+\begin{titlemize}{Questions}
+\item  For $f \in Q_{n-1}$ can we given an epsilon map, $\epsilon: C_n \rightarrow \{0,1\}$, formalism for $t<_f s$ to tie it in with the universal case?
+\item If we can how can $\tilde{f}$ be constructed from $f \in Q_{n-1}$ to a similar manner to those in $\tilde{P}_n$?
+\end{titlemize}
+
+\begin{proof}
+First let $t<s$ and 
+
+\begin{equation}\label{equ1}
+f(\{t:n-1\}) = f(\{t:s-1\}) + f(\{s:n-1\}).
+\end{equation}
+
+As $\tilde{f}$ is MSA we have $0\le \tilde{f}(\{t:n\}) - \tilde{f}(\{t:s-1\}) - \tilde{f}(\{s: n\}) \le 1$ let $\tilde{f}$ take the value
+\begin{equation}\label{pluszero}
+    \tilde{f}(\{t:n\}) = \tilde{f}(\{t:s-1\}) + \tilde{f}(\{s: n\}) .
+\end{equation}
+
+Substituting equation (\ref{assumpEqu}) into equation (\ref{pluszero}) this gives $\tilde{f}(\{t:n-1\}) = \tilde{f}(\{t:s-1\}) + f(\{s:n-1\})  +1$ and as $\tilde{f}|_{Q_{n-1}} =f$ so
+
+\begin{equation}\label{e8}
+\tilde{f}(\{t:n\}) = f(\{t:s-1\})+ f(\{s:n-1\}) +1.
+\end{equation}
+
+By substituting equation (\ref{equ1}) into equation (\ref{e8}) we are done. For the second case let $s<t $ and 
+\begin{equation}\label{assumpEqu2}
+    f(\{s:n-1\}) = f(\{s: t-1\}) + f(\{t:n-1\}) +1.
+\end{equation}
+
+As $\tilde{f}$ is MSA we have $0\le \tilde{f}(\{s: n\}) - \tilde{f}(\{s: t-1\}) - \tilde{f}(\{t:n\}) \le 1,$ in particular let $\tilde{f}$ take the value
+\begin{equation}\label{plusoneterm}
+  \tilde{f}(\{s: n\}) = \tilde{f}(\{s: t-1\}) + \tilde{f}(\{t:n\}) +1.
+\end{equation}
+
+rearranging we have, $\tilde{f}(\{t:n\}) = \tilde{f}(\{s: n\}) - \tilde{f}(\{s: t-1\}) - 1$. Substituting equation (\ref{assumpEqu}) into the previous equation, we have
+
+\begin{equation}\label{EQU2}
+    \tilde{f}(\{t:n\}) = f(\{s:n-1\}) -f(\{s:t-1\}) 
+\end{equation}
+
+finally appropriately substituting into (\ref{EQU2}) equation (\ref{assumpEqu2}) gives $\tilde{f}(\{t: n\}) = f(\{ t:n-1\}) +1 .$ By similarly rearranging one can show the later implication. 
+\end{proof}
+
+\begin{definition}
+For a fixed $f \in Q_n$ and $\tilde{f} \in Q_{n}^{f}$ we call $r\in [n]$ the cascade point if 
+$$r=Max\{ p \in [n] : f(\{p: n-1\}) < \tilde{f}(\{p: n\}), \text{ with } \tilde{f} \in Q_n \}$$
+
+with respect to the ordering $<_f$ on $[n]$.
+\end{definition}
+
+\begin{remark}
+By lemma \ref{exercyclic} for $s \in [n]$ as soon as one has $\tilde{f}(\{s:n\}) = f(\{s:n-1\} +1$ then for all $t$ such that $t <_f s$ also satisfy $\tilde{f}(\{t:n\}) = f(\{t:n-1\} +1$ and so are in $I$. More generally by Lemma \ref{exercyclic} the $i \in [n]$ up an including the cascade point with respect to $<_f$ have $\tilde{f}(\{p:n\})=f(\{p:n-1\})+1 = $ are contained in $I$. Therefore $I$ is closed under "$f-$maximality". Similarly for those $t \in [n]$ such that $r<_f t$ then $t \in J$ and $J$ is closed under $f-$minimality.
+\end{remark}
+
+By lemma \ref{exercyclic} if one knows the cascade point then one knows all $\tilde{f}(A)$ values for $A \in C_n$. We will now prove Proposition \ref{main_biject} and in doing so we will prove $|Q_n|=n!$.
+
+\begin{proof}
+To show injectivity let $\tilde{g}, \tilde{f} \in Q_{n}^{f}$ with $\psi(\tilde{g})=\psi(\tilde{f})$ and in particular have the same cascade point and so,
+
+\begin{align*}
+Max\{ p \in [n] : f(\{p:n-1\})+1 = \tilde{g}(\{p:n\}), \text{ with } \tilde{g} \in Q_n \}\quad \quad& \\
+= Max\{ p^{'} \in [n] : f(\{p^{'}:n-1\})+1 = \tilde{f}(\{p^{'}:n\}), \text{ with } \tilde{f} \in Q_n \}.&
+\end{align*}
+
+Note $[n]$ has the same ordering $<_f$ and so for the set $I$ by lemma \ref{exercyclic} we have $\tilde{g}(\{p:n\})=\tilde{f}(\{p^{'}:n\})$. Similarly for the set $J$ for $i \in [n]\setminus I$. 
+
+For $S \in C_n$ that do not contain $n$ we note $\tilde{g}|_{Q_{n-1}} = f = \tilde{f}|_{Q_{n-1}}$. Therefore we have shown $\tilde{g}=\tilde{f}$.
+
+To show surjectivity assume $\tilde{f} \in Q_{n-1}$ and an ordering $<_f$ on $[n-1]$ i.e. for some permutation, $p_f(1)<_f \cdots  <_f p_f(n-1).$ Assume additionally that the maximal element is contained in $I$ i.e. $p_f(n-1) \in \{ p | \quad f(\{p:n-1\}) < \tilde{f}(\{p:n\}) \} $. By lemma \ref{exercyclic} we have $f(\{p_f(i):n-1\}) < \tilde{f}(\{p_f(i):n\}).$ Hence for $1\le i\le n-2$ we have $p_f(i) \in \{ p | \quad f(\{p:n-1\}) < \tilde{f}(\{p:n\}) \}.$ This completely determines the values for $\tilde{f}$ and so is surjective for $p_f(n-1)$. By changing the cascade point  and using the definition of $I$ and $J$ and lemma \ref{exercyclic} this shows $\psi$ is surjective.\\
+
+If we remove $p_f(n-1)$ from $[n-1]$ we can inductively assign an $n-1$ functions $\tilde{f}\in Q_{n-2}$ that map to $p_f(i)$ for each $1\le i\le n-1$. Repeatedly doing this gives us $|Q_n|=n!$.
+
+\end{proof}
+
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+\end{document}
+

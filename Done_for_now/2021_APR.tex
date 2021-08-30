@@ -1,0 +1,603 @@
+\documentclass[a3paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+
+%\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{titling}
+\newcommand{\subtitle}[1]{%
+  \posttitle{%
+    \par\end{center}
+    \begin{center}\large#1\end{center}
+    \vskip0.5em}%
+}
+
+\newenvironment{sproof}{%
+  \renewcommand{\proofname}{Sketch Proof}\proof}{\endproof}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Combinatorics of stability conditions for all fine compactified Jacobians}
+% \subtitle{APR}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+% Done
+\section{General theory}
+
+Recall that for a smooth projective curve the Jacobian variety is an abelian variety (of the form $\mathbb{C}^{g}/ \Lambda$) that bears information of the curve, for example by the Torelli theorem. Put in a modular way, over such a curve the Jacobian is the moduli space of isomorphism classes of degree zero line bundles over the curve. For nodal curves one can consider generalised Jacobians (i.e. the moduli space of line bundles whose degree on each irreducible component of the curve equals zero), but these need not be compact. Naturally one is lead to question of how to compactify such objects in a modular way. This area of study has a long history such as the work of Meyer-Mumford \cite{mayer1964further}, Altman-Kleiman \cite{altman1980compactifying}, Simpson \cite{simpson1994moduli} and Esteves \cite{esteves2001compactifying}. \\
+
+Unlike the standard modular compactification of the $n$-pointed moduli space of genus $g$ curves by stable curves, there are many different compactifications of universal Jacobians over $\overline{\mathcal{M}}_{g,n}$. A general construction of compactified Jacobians over $\overline{\mathcal{M}}_{g,n}$, that aims to formulate a theory for \textit{all} compactified Jacobians is given by Kass-Pagani in \cite{kass2019stability}. They consider compactifying $\mathcal{J}_{g,n}$ over $\overline{\mathcal{M}}_{g,n}$ by compactifying each generalised Jacobian over each point of $\overline{\mathcal{M}}_{g,n}$, such that for a family of curves each fiber fits into a nice family. In particular they build on the work of Oda-Seshadri \cite{oda1979compactifications} where such a compactification of $\mathcal{J}_{g,n}$ depends on a polarisation $\phi$, which is an assignment of a real number to each irreducible component of each curve of $\overline{\mathcal{M}}_{g,n}$ subject to compatibility conditions. In \cite{pagani2020geometry} the authors gave an example of a compactified universal Jacobian not derived from such a polarisation.
+
+% (where points of $\overline{\mathcal{M}}_{g,n}$ represent curves that have at worst nodal singularities but that are not necessarily irreducible)
+
+\section{Project outline and APR outline}
+
+I have been studying the combinatorics of the stability conditions for all compactified Jacobians, not only those obtained from some polarisation, as a way to classify compactified Jacobians for a fixed genus. \\
+
+The combinatorial framework that Kass-Pagani and Pagani-Tommasi present for the classification of fine compactified universal Jacobians in $g=1$ \cite{pagani2020geometry}, focuses on two different spaces of stability conditions. First the set of \textit{polarised} stabilities denoted by $P_n$, which consists of the set of connected components of the complement of certain hyperplanes (corresponding to degenerate stability conditions) in the unit hypercube of dimension $n$. Second, a set of generalised stability conditions that we denote with $\tilde{P}_n$, whose elements are "mildly superadditive functions", see definition \ref{MSA}.\\
+
+This year I focused on the combinatorial aspects of $P_n$ and $\tilde{P}_n$, and on determining explicit formulae for their number of elements. I also studied the combinatorics of the compactified Jacobians over a single curve in $g=1$, and developed an understanding of generalised stability conditions for a single curve of general genus. I will now outline the work done along with future research questions. 
+
+% By constructing $f \in \tilde{P}_n$ for $2\le n \le 5$ we see not all compactified fine universal Jacobians are given by a $\phi$-stability condition.
+
+
+\section{My initial study of $P_n$.}
+
+ In order to be introduced to the area of study I began by investigating the $g=1$ universal $\phi$-stability space up to translation, denoted by $P_n$ and introduced in \cite[Section 3]{kass2019stability}. The space $P_n$ is a toric hyperplane arrangement with hyperplanes derived from \cite[Equation (27)]{kass2019stability} and with $n \ge 1 \in \mathbb{N}$ (where $n+1$ is the number of marked points of the moduli space of stable curves $\overline{\mathcal{M}}_{1,n+1}$). To define the hyperplanes define the set of non-empty subsets of $[n]$ as $\mathcal{P}_n ^{+} $.
+ 
+\begin{definition}\label{polytopes}
+Define $P_n$ to be the set of connected components of $[0,1]^{n} \setminus  \bigcup_{S \in \mathcal{P}_n ^{+}} H(S,k)$ where,
+\begin{equation*}\label{hyperplane}
+H(S,k):= \left\{\sum_{i \in S} x_i = k \text{ for } k \in \mathbb{Z}\right\}.
+\end{equation*}
+\end{definition}
+
+
+% \begin{remark}
+%  These hyperplanes have a natural action of $S_n$ by permuting the variables. In addition they have the $\mathbb{Z}_2$ reflection over the origin. 
+% \end{remark}
+
+
+% To determine the number of connected components of this infinite hyperplane arrangement in $\mathbb{R}^{n}$. I first applied Zaslavskys hyperplane arrangements theorem \cite[Theorem 3.11.7]{stanley2011enumerative} to the finite hyperplanes that cut $[0,1]^{n}$ which gave the wrong count. \\
+
+\begin{remark}
+Note that for a fixed $S \in \mathcal{P}_n^{+}$, $\{H(S,k)\}_{k \in \mathbb{Z}}$ is a locally finite set of affine hyperplanes, hence the connected components are $n$-dimensional polytopes. As \cite[Remark 5.10]{kass2019stability} states, each map $x_i \mapsto x_i+1$ respects the collection $\{H(S,k)\}_{S \in \mathcal{P}_n^{+},k \in \mathbb{Z}}$ and therefore the $n$-dimensional hypercube is a fundamental domain. That is $H(S,k)$ forms a finite hyperplane arrangement of the $n$-dimensional real torus.
+\end{remark}
+
+I then applied theorem \ref{toriczav} (see below) to $P_n$ in the $n=2,3$ cases by taking the hyperplane arrangement of $H(S,k)$ identified appropriately in $[0,1]^{n}$. I will now introduce the notation to state this theorem. Let $\mathcal{A}$ be a finite hyperplane arrangement in an ambient vector space $\hat{0}:=V$.
+
+\begin{definition}[{\cite[Definition 1.1, p.8]{stanley2004introduction}}]\label{poposet}
+Let $L(\mathcal{A})$ denoted the set of nonempty intersections of hyperplanes in $\mathcal{A}$ including $V$. Define the ordering $x\ge y$ if $x \subseteq y$. Therefore $L(\mathcal{A})$ is partially ordered by reverse inclusion and we call $L(\mathcal{A})$ the intersection poset of $\mathcal{A}$.
+\end{definition}
+
+
+\begin{definition}[{\cite[Definition 1.2, p.9]{stanley2004introduction}}]\label{mob} Let $P$ be a locally finite poset. Define the Möbius function to be $\mu : Int(P) \rightarrow \mathbb{Z}$ by 
+\begin{align*}
+    \mu (x,x) &=1, \quad \forall x \in P\\
+    \sum _{x \le z\le y} \mu(x,z)&=0, \quad \forall x<z \in P
+\end{align*}
+
+where and $\mu(x)=\mu(\hat{0},x)$.
+\end{definition}
+
+\begin{example}\label{poset}
+Identify $P_2$ with $[0,1]^{2} \subseteq \mathbb{R}^{2}$ with opposite faces of $[0,1]^{2}$ identified and with the hyperplane arrangement $\mathcal{A}= \{x_1=0, x_2=0,x_1+x_2=1\}$. By definition \ref{poposet} and definition \ref{mob} we have the intersection poset $L(\mathcal{A})$ with corresponding $\mu(x)$ values for $x \in L(\mathcal{A})$ as described in the figure below,
+
+\begin{figure}[H]
+    \centering
+\begin{table}[H]
+\parbox{.45\linewidth}{
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+		\node [scale=1.5][style=none] (0) at (0, -1) {$\mathbb{R}^{2}$};
+		\node [style=none] (1) at (-1, 4.75) {};
+		\node [style=none] (2) at (5, 4) {};
+		\node [style=none] (3) at (-5, 3.25) {};
+		\node [style=none] (4) at (0, 9) {};
+		\node [style=none] (5) at (-4, 5) {};
+		\node [style=none] (6) at (-1, 8) {};
+		\node [style=none] (7) at (1, 8) {};
+		\node [style=none] (8) at (4, 5) {};
+		\node [style=none] (9) at (0, 5.25) {};
+		\node [style=none] (10) at (0, 8) {};
+		\node [style=none] (11) at (0, 3) {};
+		\node [style=none] (12) at (0, 0) {};
+		\node [style=none] (13) at (1, 0) {};
+		\node [style=none] (14) at (4, 3) {};
+		\node [style=none] (15) at (-4, 3) {};
+		\node [style=none] (16) at (-1, 0) {};
+		\node [style=none] (17) at (1, 3) {};
+		\node [style=none] (18) at (3, 4) {};
+		\node [style=none] (19) at (-5, 5) {};
+		\node [shape=circle,draw,fill=black,scale=0.3] (25) at (0, 9) {g};
+		\draw (15.center) to (16.center);
+		\draw (6.center) to (5.center);
+		\draw (7.center) to (8.center);
+		\draw (14.center) to (13.center);
+		\draw (12.center) to (11.center);
+		\draw (9.center) to (10.center);
+		\draw [ultra thick](1.center) to (17.center);
+		\draw [ultra thick](18.center) to (2.center);
+		\draw [ultra thick](19.center) to (3.center);
+\end{tikzpicture}
+\end{center}
+}
+\hfill
+\parbox{.45\linewidth}{
+\begin{center}
+\begin{tikzpicture}[scale=0.5]
+		\node [scale=1.5][style=none] (0) at (0, -1) {$1$};
+		\node [style=none] (4) at (0, 9) {};
+		\node [style=none] (5) at (-4, 5) {};
+		\node [style=none] (6) at (-1, 8) {};
+		\node [style=none] (7) at (1, 8) {};
+		\node [style=none] (8) at (4, 5) {};
+		\node [style=none] (9) at (0, 5.25) {};
+		\node [style=none] (10) at (0, 8) {};
+		\node [style=none] (11) at (0, 3) {};
+		\node [style=none] (12) at (0, 0) {};
+		\node [style=none] (13) at (1, 0) {};
+		\node [style=none] (14) at (4, 3) {};
+		\node [style=none] (15) at (-4, 3) {};
+		\node [style=none] (16) at (-1, 0) {};
+		\node [scale=1.5][style=none] (19) at (-5, 4) {$-1$};
+		\node [style=none] (20) at (0, 9) {};
+		\node [style=none] (21) at (0, 9) {};
+		\node [style=none] (22) at (0, 9) {};
+		\node [style=none] (23) at (0, 9) {};
+		\node [style=none] (24) at (0, 9) {};
+		\node [scale=1.5][style=none] (25) at (0, 9) {$0$};
+		\node [scale=1.5][style=none] (26) at (5, 4) {$-1$};
+		\node [scale=1.5][style=none] (27) at (0, 4) {$-1$};
+		\draw (15.center) to (16.center);
+		\draw (6.center) to (5.center);
+		\draw (7.center) to (8.center);
+		\draw (14.center) to (13.center);
+		\draw (12.center) to (11.center);
+		\draw (9.center) to (10.center);
+\end{tikzpicture}
+\end{center}
+}
+\end{table}
+    \caption{$L(\mathcal{A})$ with $\mu$ values.}
+    \label{fig:my_label22}
+\end{figure}
+
+
+\end{example}
+
+\begin{definition}[{\cite[Definition 1.3, p.10]{stanley2004introduction}}]
+The characteristic polynomial $\chi_{{\mathcal{A}}} (t)$ of $\mathcal{A}$ is,
+$$\chi_{\mathcal{A}} (t) = \sum_{x \in L(\mathcal{A})}  \mu (x) t ^{\text{dim} (x)}. $$
+\end{definition}
+
+\begin{theorem}[{\cite[Theorem 3.6]{Ehrenborg_2009}}]\label{toriczav}
+Let $\mathcal{A}$ be a finite toric hyperplane arrangement on the $n$-dimensional torus $T^n$
+that subdivides the torus into connected components that are topologically open $n$-dimensional balls. Then the number of connected components in the complement of the arrangement is given by 
+$$(-1)^{n} \cdot \chi(\mathcal{A};t = 0).$$
+\end{theorem}
+
+\begin{example} The space $P_2$ can be described by the following diagram,
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tikzpicture}[scale=0.8]
+		\node [style=none] (0) at (0, 0) {};
+		\node [style=none] (1) at (5, 0) {};
+		\node [style=none] (2) at (0, 5) {};
+		\node [style=none] (3) at (5, 5) {};
+		\node [style=none] (4) at (6, 0) {};
+		\node [style=none] (5) at (0, 6) {};
+		\node [style=none] (7) at (5, 6) {};
+		\node [style=none] (8) at (6, 5) {};
+		\node [style=none] (9) at (-1, 5) {};
+		\node [style=none] (10) at (-1, 0) {};
+		\node [style=none] (11) at (0, -1) {};
+		\node [style=none] (12) at (5, -1) {};
+		\node [style=none] (13) at (4, 6) {};
+		\node [style=none] (14) at (6, 4) {};
+		\node [style=none] (15) at (-1, 1) {};
+		\node [style=none] (16) at (1, -1) {};
+		\node [style=none] (17) at (6, -1) {};
+		\node [style=none] (18) at (-1, 6) {};
+		\node [style=none] (19) at (-1.5, 5) {1};
+		\node [style=none] (20) at (5, -1.5) {1};
+		\node [style=none] (21) at (-1.2, -1.2) {0};
+		\node [style=none] (22) at (1.5, 1.5) {$f_0$};
+		\node [style=none] (23) at (3.5, 3.5) {$f_1$};
+		\draw (0.center) to (2.center);
+		\draw (0.center) to (1.center);
+		\draw (1.center) to (3.center);
+		\draw (2.center) to (3.center);
+		\draw (2.center) to (5.center);
+		\draw (1.center) to (4.center);
+		\draw (18.center) to (2.center);
+		\draw [dotted](13.center) to (14.center);
+		\draw (3.center) to (8.center);
+		\draw (3.center) to (7.center);
+		\draw (1.center) to (17.center);
+		\draw (1.center) to (12.center);
+		\draw (0.center) to (11.center);
+		\draw (0.center) to (10.center);
+		\draw [dotted](0.center) to (15.center);
+		\draw [dotted](0.center) to (16.center);
+		\draw (2.center) to (9.center);
+		\draw (2.center) to (1.center);
+\end{tikzpicture}
+\end{center}
+    \caption{Connected components of $P_2$}
+    \label{lab44}
+\end{figure}
+
+By example \ref{poset} we have $\chi(\mathcal{A})=t^{2}-3t+2$ and for $t=0$ we have two connected components, hence $|P_2|=2$.
+
+\end{example}
+
+I determined the characteristic polynomial in the toric case and in turn the number of connected components by hand for $n=2,3$ which where $|P_2|=2$ and $|P_3|=10$. This calculation agreed with previous by hand calculations counting appropriate connected components of the hypercube. Further evidence was given by a programming result by Alexander Kasprzyk who gave $|P_2|=2$, $|P_3|=10$, $|P_4|=154$ and $|P_5|=8410$. I attempted to re-obtain these results, however calculations for $n=4$ are difficult as the method relies on complicated calculations involving visualisation of the intersection poset.
+
+\section{Counting $|\tilde{P}_n|$}
+
+ After my initial study of $P_n$, I was informed of \cite[Theorem 6.4]{pagani2020geometry} which gives a bijection between fine compactified universal Jacobians in $g=1$ and mildly super-additive functions. 
+ 
+\begin{definition}\label{MSA}
+A function $f: \mathcal{P}_n ^{+}   \rightarrow \mathbb{Z}$ is mildly super additive (MSA) if for all $I,J \in \mathcal{P}_n ^{+} $ with $I \cap J = \emptyset$ then 
+\begin{equation}\label{MSA7}
+    0\le f(I \cup J) - f(I) -f(J) \le 1.
+\end{equation}
+
+Define by $\tilde{P}_n$ the set of MSA functions such that $f(\{i\})=0$ for all $i \in [n]$.
+\end{definition}
+ 
+ One can relate $P_n$ and $\tilde{P}_n$ by the following maps.
+ 
+\begin{definition}\label{weakinequal}
+Define $\beta:\tilde{P_n} &\rightarrow P_n \cup \{\emptyset\}$ by
+ 
+$$f \mapsto R_f= \bigcap_{S \in \mathcal{P}_{n}^{+}} \{\underline{x}\in [0,1]^{n} \mid f(S) < \sum_{i \in S} x_i < f(S)+1\}.$$
+
+\end{definition}
+
+\begin{remark}
+For a function $f:\mathcal{P}^{+}_{n} \rightarrow \mathbb{Z}$, being MSA is necessary for the corresponding $R_f$ to be nonempty. For $f \in \tilde{P}_n$ either $\beta(f)=\emptyset$ or a top-dimensional connected component of $[0,1]^{n}$.
+\end{remark}
+
+\begin{definition}\label{alpha} Let $R \in P_n$ and $\underline{x}\in R$ define the map $\alpha: P_n \rightarrow \tilde{P_n}$ such that $R \mapsto c_R$ and 
+      $$c_{R}(\underline{x}) = \text{Max} \{ c \in \mathbb{Z} \mid c < \sum_{\substack{i \in S\\ S \in \mathcal{P}_n^{+}}} x_i \}.$$
+   
+      \end{definition}
+
+ \begin{lemma}\label{msamap}
+  For $R \in P_n$ the function $\alpha(R)=c_R:\mathcal{P}_n^{+} \rightarrow \mathbb{Z}$ is mildly super additive and $c_R(\{j\})=0$ for $j \in [n]$.
+\end{lemma}
+
+\begin{proof}
+       (Omitted)
+\end{proof}
+
+% the values of C_R may not be as those f \in \tilde{P}_n. 
+
+% \begin{proof}
+%       Let $\underline{x} \in R$, by the definition of $H(S,k)$ one has for $r,s,t \in \mathbb{Z}$ and $I \cap J = \emptyset$, the inequalities $r < X_{I} < r+1$, $s<X_{J}<s+1$ and $t<X_{I \sqcup J}<t+1$. Take $r,s,t$ to be maximum otherwise the hyperplanes of $H(S,k)$ intersect $R$, contradicting the connected condition. Sum the first two inequalities to obtain 
+       
+%       $$r+s<X_{I \sqcup J}<r+s+2,$$ 
+   
+%   and compare this to $t<X_{I \sqcup J}<t+1$ to obtain $t<r+s+2$ and $r+s<t+1$. Hence $t-2<r+s<t+1$ and as $r+s \in \mathbb{Z}$ one has $r+s= t$ or $r+s=t-1$, in turn $t=r+s$ or $t=r+s+1$. Hence $\alpha(R)$ is mildly super additive.   
+
+% As $R \in P_n$ so $f(\{j\})=0$ for $j \in [n]$.
+
+% \end{proof}
+
+ 
+%   By lemma \ref{msamap}, $\alpha$ is an inclusion and so 
+  
+  Each connected component $R \in P_n$ is defined by the intersection of half-spaces for some $H(S,k)$. Therefore $\beta \circ \alpha=Id_{P_n}$ and so $\alpha$ is injective. I therefore pivoted to answering the question proposed in \cite[Remark 6.14]{pagani2020geometry} of determining an inductive formula for counting $|\tilde{P}_n|$. I began by doing so for low $n$ where I explicitly calculated $|\tilde{P}_2|=2$,$|\tilde{P}_3|=10$ and $|\tilde{P}_4|=154$ by hand, doing so showed the maps $\alpha$ and $\beta$ are inverses for $n=2,3,4$. This is not true for $n=5$, for a particular $f$ \cite[Example 6.12]{pagani2020geometry} we have $R_f=\emptyset$.\\
+
+\begin{example}
+One can explicitly determine the elements of $\tilde{P}_2$ and $\tilde{P}_3$ to be,
+
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+      & $\{1,2\}$ \\ \hline
+$f_1$ & 0         \\ \hline
+$f_2$ & 1         \\ \hline
+\end{tabular}
+\caption{MSA functions of $\tilde{P_2}$}
+\label{tablee}
+\end{figure}
+and
+\begin{figure}[H]
+    \centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+      & $\{1,2\}$ & $\{1,3\}$ & $\{2,3\}$ &  $\{1,2,3\}$\\ \hline
+$f_1$ & 0         &  0  & 0 & 0 \\ \hline
+$f_2$ & 0        &0    & 0 & 1 \\ \hline
+ $f_3$     &   1        & 0   &0  & 1 \\ \hline
+  $f_4$    &       0    &  1  & 0 &1  \\ \hline
+  $f_5$    &        0   &  0  & 1 &1  \\ \hline
+  $f_6$    &        1   &  1  & 0 & 1 \\ \hline
+   $f_7$   &         1  &  0  & 1 & 1 \\ \hline
+  $f_8$    &       0    &  1  & 1 & 1 \\ \hline
+  $f_9$    &        1   &   1 & 1 &1  \\ \hline
+  $f_{10}$    &       1    &  1  &1  &2  \\ \hline
+\end{tabular}
+\caption{MSA functions of $\tilde{P_3}$.}
+
+}
+\end{figure}
+
+By $\beta$ the functions $f_0$ and $f_1$ of Table \ref{tablee} correspond to the connected components of Figure \ref{lab44}.
+
+\end{example}
+
+
+
+
+  
+  
+%   Using these calculations we studied the geometry of $\tilde{P}_n$ by decomposing the space into orbits. By characteristic and $S_n$ orbits and by a $\mathbb{Z}_2$ action.\\
+
+To inductively find $|\tilde{P}_n|$ we considered fibers of the restriction map $r: \tilde{P}_{n+1} \rightarrow \tilde{P}_{n}$. By insights from Jon Woolf, we derived an algorithm for determining the elements of $\tilde{P}_n$ for $n=2,3,4,5$. This algorithm worked for low $n$ and I have been treating this as black box until I have developed the theory sufficiently. I then proceeded to write and test this algorithm in Python. Learning to write, writing and refining this program took some time. The $n=6$ case currently takes too long to run and requires procedures for efficiency. The output code determines $\tilde{P}_n$ explicitly up to $n=5$ and gives a count for $|\tilde{P}_n|$ up to $n=5$ confirming previous by hand calculations, and shows $|\tilde{P}_5|=10334$.
+
+% From this we studied the characteristic and $S_n$-orbits and showed for $\tilde{P}_3$ to be $6$ and $6$, $\tilde{P}_4$ to be $26$ and $28$, and $\tilde{P}_5$ to be $170$ and $304$ respectively. These calculation give evidence that $S_n$ orbits are finer than characteristic orbits.\\
+
+\begin{definition}
+Let $f \in \tilde{P}_n$ and define
+$$\overline{R}_f= \bigcap_{S \in \mathcal{P}_{n}^{+}} \{\underline{x}\in \mathbb{R}^n \mid f(S) \le \sum_{i \in S} x_i \le f(S)+1\}$$
+
+ and let $\overline{P}_n$ denote the set of all $\overline{R}_f$.
+\end{definition}
+
+ In order to check this calculation, I cross-referenced this with the result of Alexander Kasprzyk who showed that $|P_5|=8410$. To do so I made use of Sage to determine $|\overline{P}_n|$. This code showed there are $8410$ top dimensional polytopes and $1924$ of lower dimension, therefore giving support to my coding results. In addition there where no empty polytopes. From this we speculate that there exists a larger stability space, for example $\mathbb{R}^n \times (-1,1)$ with wall and chambers such that elements of $\tilde{P}_n$ are the top dimensional regions in $\mathbb{R}^n \times (-1,1)$ whilst elements of $P_n$ are the elements of $\tilde{P}_n$ that intersect $\mathbb{R}^n \times \{0\}$ in a top $n$-dimensional cell.
+ 
+
+
+% the "classical" stability space
+
+\begin{titlemize}{Research questions}
+\item To determine for any $n$ an explicit formula the cardinality of $\tilde{P}_n$.
+\item Study the asymptotic relationship of $P_n$ and $\tilde{P}_n$.
+\item Determine interesting lower and upper bounds for $\tilde{P}_n$ by weakening the MSA conditions.
+\end{titlemize}
+
+
+\section{Generalised stability conditions for a graph}
+
+% To a curve $X$ one can associate the dual graph $G_X$ by assigning a vertex for each irreducible component of $X$ and an edge for each node of $X$, and joining the two vertices corresponding to the components on which the node lies.
+
+% For each line bundle over a curve we have a multidegree $d$ belonging to the set of degree $0$ divisors $S(G):=Div^{0}(G)$. 
+
+% Classically the stability of these multidegrees are determined by a polarisation $\phi$ and by Oda-inequalities associated to the underlying graph $G$ of the curve.
+
+% We aim to study a generalisation of these stability conditions which relies only on $G$. For a single curve and for line bundles I studied the definitions of $\phi$-stability and generalised stability and considered case examples. 
+
+
+There is a classical notion of stability due to Oda-Seshadri for divisors on a graph, that I aim to generalise. I will now introduce these notions and propose a question relating the two.\\
+
+Let $G=(\operatorname{Vert},E)$ be a undirected multigraph (with multiple edges between vertices) consisting of a finite set of vertices $\operatorname{Vert}$ and a finite set of edges E that is connected. A complete subgraph $\emptyset \subsetneq G_0 \subsetneq G$ of $G$ is a subset of $\operatorname{Vert}$ for which all the vertices are connected to each other by edges of $G$. A spanning tree $\Gamma$ of the graph $G$ is a subtree of $G$ that contains all vertices of $G$ and let $I$ denote the index set for the spanning trees of $G$. Define the genus of a graph to be the first Betti number of the graph, $g:=b_1(G)=|E|-|V|+1$, i.e. the number of independent loops of $G$. Denote the set of degree $D \in \mathbb{Z}$ divisors on $G$ by 
+
+
+% A subgraph $\emptyset \subsetneq G_0 \subsetneq G$ is elementary if both $G_0$ and $G_0^{c}$ are connected. 
+
+%  and note that $b_{1}(G) = \#Edges(G\setminus \Gamma)$. 
+
+
+$$S^{D}(G) = \{d : \operatorname{Vert(G)}  \rightarrow \mathbb{Z} \mid \sum_{v \in \operatorname{Vert(G)} } d(v) =D \} \subseteq \mathbb{Z}^{\operatorname{Vert(G)} }.$$
+
+Two special cases are $D=0$ which we denote as $S(G):=S^{0}(G)$ and when $D=-g$. We define the total degree $0$ stability space to be
+
+$$V(G)=\{\phi : \operatorname{Vert(G)} \rightarrow \mathbb{R} \mid \sum_{v \in \operatorname{Vert(G)}} \phi(v) =0 \} \subseteq \mathbb{R}^{\operatorname{Vert(G)}},$$
+
+and in particular we have $S(G) \subseteq V(G)$.\\
+
+The notion of $\phi$-stability for a single curve is outlined in \cite[Section 4]{kass2019stability} and in \cite[Section 3.2]{Kass_2017}. The following is derived from \cite[Definition 4.1]{kass2019stability} as a special case for line bundles.
+
+
+\begin{definition}
+Let $\phi \in V(G)$, we say $d \in S(G)$ is $\phi$-(semi)stable if
+
+\begin{equation*}\label{stabinequal}
+\Bigl| \sum_{v \in Vert(G_0)} d(v) - \phi(v)\Bigr| \underset{(\le)}{<}  \frac{\# (E(G\setminus G_0) \cap E(G\setminus G_0^{c}) )}{2},
+\end{equation*}
+
+for all $\emptyset \subsetneq G_0 \subsetneq G $, where $G_0$ is a complete subgraph and $G_0^{c}$ denotes the complete subgraph on the complement vertices to $G_0$. Denote the set of $\phi$-stable degrees by
+$$\sigma_{\phi}(G):=\{d : \text{Vert}(G) \rightarrow \mathbb{Z} \mid \phi \text{-stable}\} \subseteq S(G).$$
+\end{definition}
+
+\begin{definition}[{\cite[Definition 5.1]{kass2019stability}}] 
+
+Let $G$ be a graph. Define for each subgraph $\emptyset \subsetneq G_0 \subseteq G$ and integer $k \in \mathbb{Z}$ an affine linear function $l(G_0,k):V(G) \rightarrow \mathbb{R}$ by 
+
+$$l(G_0,k)(\phi):=k-\sum_{v \in Vert(G_0)} \phi(v) + \frac{\# (E(G\setminus G_0) \cap E(G\setminus G_0^{c}) )}{2}.$$
+
+For $G_0$ a complete subgraph denote a stability hyperplane by
+$$H(G_0,k):= \{\phi \in V(G) \mid l(G_0,k)(\phi)=0\} \subsetneq V(G).$$
+A $\phi \in V(G)$ that does not belong to a stability hyperplane is called non-degenerate. Define $Q_G$ to be the set whose elements are stability polytopes of $V(G)$ as the connected components of the complement in $V(G)$ of all stability hyperplanes,
+
+$$V(G) - \bigcup_{\substack{ \emptyset \subsetneq G_0 \subsetneq G \text{ complete }\\ k \in \mathbb{Z}}} H(G_0,k).$$
+
+% Note that what you have written now is a *subset* of V(G), not a collection of polytopes!
+
+For $\phi_0 \in V(G)$ non-degenerate, denote by $P(\phi_0)$ the unique stability polytope in V(G) that contains $\phi_0$ or, more explicitly:
+$$P(\phi_0)=\{\phi \in V(G) \mid l(G_0,k)(\phi)>0 \text{ for all } l(G_0,k) \text{ such that } l(G_0,k)(\phi_0) >0\}.$$
+\end{definition}
+
+
+
+Abstracting the properties of $\sigma_{\phi}(G)$, I was then introduced to generalised stability conditions. In order to state the definition of a generalised stability condition, I will now introduce the Jacobian of a graph \cite[Chapter 2]{corry2018divisors}.
+
+% \hline
+
+% Let $Div(G):=\mathbb{Z}^{Vert(G)}$ denote the set of divisors on $G$. For $D,D^{'} \in Div(G)$ the chip-firing action is defined by firing a vertex $v$ on $D$ to obtain $D^{'}$ by mapping $D$ to 
+
+
+% % To develop this I studied the chip-firing action on $G$, the Jacobian of a graph and its connection to spanning trees through Kirchhoff's theorem.
+
+
+% $$D^{'}= D - deg(v)+\sum_{vw\in E} w.$$
+
+% One can also similarly define the reverse firing $-v$, mapping $D$ to
+
+% $$D^{'}= D + deg(v)-\sum_{vw\in E} w.$$
+
+% Linear combinations of vertices can be fired at once and are called firing scripts, the set of all firing scripts is denoted by $\mathbb{Z}^{Vert(G)}$.
+
+% \hline 
+
+\begin{definition}\label{div}
+For $f \in \mathbb{Z}^{\text{Vert}(G)}$ define linear map $div: \mathbb{Z}^{\text{Vert}(G)} \rightarrow Div(G)$ by
+
+\begin{equation*}
+    div(f)= \sum_{v \in \text{Vert}(G)} \left( deg(v)\cdot f(v) - \sum_{vw \in E(G)} f(w) \right) \cdot v.
+\end{equation*}
+\end{definition}
+
+Divisors $D$ and $D^{'}$ are linearly equivalent if $D-D^{'}=div(f)$ for $f \in \mathbb{Z}^{\text{Vert}(G)}$. As $S(G)$ is a subgroup of $Div(G)$ and by construction $div$ maps to $S(G)$, we can consider the following induced group action on $S(G)$,
+\begin{align*}
+    \alpha: \mathbb{Z}^{Vert(G)} \times S(G) &\rightarrow S(G)\\
+    (f,d) & \mapsto div(f)+d.
+\end{align*}
+
+
+Define the Jacobian of a graph to be the set of orbits under this action. Equivalently, $J(G):=S(G)/ div(\mathbb{Z}^{Vert(G)} ) $. Denote by
+$\pi: S(G) \rightarrow J(G)$ the quotient map.\\
+
+% \hline 
+% First let $\sigma(G)$ be a complete set of representatives for the chip-firing action $\alpha$ on $S(G)$, that is for all $c \in S(G)$ there exists a unique $d \in \sigma(G) $ such that $c=div(f)+d \in S(G)$, equivalently $\sigma(G)$ is a section of the quotient map $\pi: S(G) \rightarrow J(G)$. For a further discussion of $\sigma(G)$ see \cite{AN_2014}.\\
+
+% % Through this I can state the definition of a generalised stability condition. 
+
+% Second we need the notion of a integral break divisor (discussed in \cite[Section 4.4]{AN_2014}). For $G$, fix an orientation so that to each edge one can assign a source and terminal vertices. For a fixed spanning tree $\Gamma$, denote the set of source maps of $G \setminus \Gamma$ to be $S=\{s:Edges(G \setminus \Gamma) \rightarrow Vert(G)$\} assigning the source vertex to each edge. Integral break divisors are constructed by taking all spanning trees and adding $1$ at the sources according to $S$.
+
+% \begin{remark}
+% Integral break divisors form a class of representatives for the chip-firing action \cite[Theorem 1.3]{AN_2014}. By construction integral break divisors are of degree $g$.
+% \end{remark}
+
+% \hline 
+
+We are now ready to define the conditions for generalised stability conditions $\sigma(G) \subseteq S(G)$. For a fixed spanning tree $\Gamma$, denote the set of source maps of $G \setminus \Gamma$ to be $S_{\Gamma}=\{s:Edges(G \setminus \Gamma) \rightarrow Vert(G)$\} assigning a source vertex to each edge, equivalently let $S_{\Gamma}$ denoted the set of orientations on $Edges(G \setminus \Gamma)$. In order to define $\sigma(G) \subseteq S(G)$ define for each spanning tree $\Gamma_i$ and $d^{'} \in S^{-g}(G)$ the following set of divisors
+
+$$\sigma^{'}(\Gamma,d^{'}
+):= \{ d \in S(G) \mid d= d^{'} + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} \text{ for } s \in S_{\Gamma}  \}.$$
+
+We are now ready to define a generalised stability condition.
+
+\begin{definition}\label{axioms12}
+A generalised stability condition for $G$ is a subset $\sigma(G) \subseteq S(G)$ such that,
+
+\begin{enumerate}
+    \item the set $\sigma(G)$ is a complete set of representatives for the chip-firing action and
+    
+\item for each spanning tree $\Gamma_i$ for $i \in I$, there exists $d_i^{'} \in S^{-g}(G)$ such that 
+
+$$\sigma(G) = \bigcup_{i\in I} \sigma^{'}(\Gamma_i,d_{i}^{'}).$$
+
+\end{enumerate}
+\end{definition}
+
+\begin{definition} Denote the set of all generalised stability conditions by
+$$\Sigma_{G} = \left\{ \sigma(G) \subseteq S(G) \mid \sigma(G) \text{ is a generalised stability condition} \right\}\subseteq 2^{S(G)}.$$
+\end{definition}
+
+We are now ready to formulate our research question. By \cite[Lemma 3.20]{Kass_2017} it can be shown that for every $P \in Q_G$ and for $\phi \in P$ we have $\sigma_{\phi}(G) \in \Sigma_G$, that is we have the following map,
+\begin{align*}
+    \psi_G: Q_G &\rightarrow \Sigma_G\\
+    \phi \in P &\mapsto \sigma_{\phi}(G).
+\end{align*}
+
+
+% For all $\P\in Q_G$, $\sigma_{\phi_1}(G)=\sigma_{\phi_2}(G)$ for $\phi_1,\phi_2 \in P$, so  $\sigma_{\phi}(G)$ is independent of $\phi\in P$.
+% Proof? depends on def 6.1 and 
+% \hline 
+% maybe you could say that every phi in V(G) defines a generalised stability sigma_phi(G)?
+
+% \begin{theorem}
+% The map, 
+% \begin{align*}
+%     \psi_G: Q_G &\rightarrow \Sigma_G\\
+%     \phi \in P &\mapsto \sigma_{\phi}(G) 
+% \end{align*}
+
+% is injective
+
+% See combo stability conditions line bundles (1).pdf
+
+\end{theorem}
+
+
+\begin{titlemize}{Research Questions}
+\item For each graph $G$, are all fine generalised stability $\sigma(G)$ of the form $\sigma_{\phi}(G)$ for some non degenerate $\phi \in V(G)$? Equivalently, is $psi_G: Q_G \to \Sigma_G$ surjective for all $G$?
+\end{titlemize}
+
+By formalising a compatibility condition for the generalised stability case we aim to describe the universal case and determine similar counts as achieved in the $g=1$ case with $|\tilde{P}_n|$ (see \cite[Lemma 6.10]{pagani2020geometry}).
+
+% \begin{titlemize}{Research Question}
+% \item We want to describe the universal $g=2$ generalised stability conditions, and to determine the first $n$ such that the set of universal generalised stabilities properly contains the set of universal polarised stabilities (as we saw with $n=5$ in the $g=1$ case).
+% \end{titlemize}
+
+
+
+
+\section{Formal activities and notes}
+I did no MAGIC courses this year. Given what I did last year I did not feel the current selection of courses would have been beneficial. I gave a talk on Hermitian Symmetric Spaces in the Shimura varieties seminar organised by Thomas Eckl and I attended relevant talks by experts in my field of study.\\
+
+
+\subsection{Personal notes}
+
+I feel the extent of the progress that I have made this year has been less than I would normally have done. Due to Covid-19 I feel I have been quite isolate mathematically, where face to face conversations would have helped significantly with motivation, ideas and reigning in impostor syndrome.\\
+
+Throughout the year I have had to redirect significant energy and time to staying committed and to retaining an optimistic attitude. I feel this is understandable given Covid. Additionally there have been little opportunities to build a social support system since moving to Liverpool, which has been a strain. In April I had a death in my family where I had to return home to support my mum. This may have effected my work.
+
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+\end{document}

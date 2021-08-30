@@ -1,0 +1,182 @@
+\documentclass[a3paper,12pt]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Combinatorics of compactified universal Jacobians}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Preliminaries}
+
+
+\subsection{The relationship between $P_n$ and $\tilde{P}_n$}
+
+Denote the powerset on $n$ elements minus the empty set as $P_n ^{+}$.
+
+\begin{definition}\label{polytopes}
+Denote the  space of polytopes as $P_n$, whose elements are the connected components of $\mathbb{R}^n \setminus  \cup H(S,k)$ for $k \in \mathbb{Z}, S \in \mathcal{P}_{n}^{+}$ such that 
+
+\begin{equation}\label{hyperplane}
+H(S,k):= \left\{H_{S,k} \mid \sum_{i \in S} x_i = k\right\}.
+\end{equation}
+
+\end{definition}
+
+\begin{definition} 
+The function $f: \mathcal{P}_n ^{+}   \rightarrow \mathbb{Z}$ is mildly super additive (MSA) if for all $I,J \in  \mathcal{P}_n ^{+}$ with $I \cap J = \emptyset$ then 
+
+\begin{equation}\label{MSA}
+0\le f(I \cup J) - f(I) -f(J) \le 1.
+\end{equation}
+
+    \begin{definition}
+    
+    The space of mildly super additive functions is given by, $$\tilde{P_n}=\{ f: \mathcal{P}_n ^{+} \rightarrow \mathbb{Z} \mid f \text{ is mildly super-additive}\}.$$
+    
+    \end{definition}
+    
+ \begin{remark}
+     $\tilde{P_n}$ parameterises all fine compactified universal $g=1$ Jacobians.
+\end{remark} 
+
+   \begin{definition}
+ The map $\beta:\tilde{P_n} &\rightarrow P_n \cup \{\emptyset\}$ maps
+ 
+\begin{equation}\label{Rfspace}
+f \mapsto R_f= \bigcap_{S \in \mathcal{P}_{n}^{+}} \{\underline{x}\in \mathbb{R}^n \mid f(S) < \sum_{i \in S} x_i < f(S)+1\}.
+\end{equation}
+
+
+ \end{definition}
+    
+    
+    \begin{remark}
+    For $f \in \tilde{P}_n$, $\beta(f)$ is either $\emptyset$ or a top-dimensional polytope (its the intersection of convex strips of top-dimension).
+    \end{remark}
+    
+    
+    To each $R \in P_n$ one can associate a MSA function.
+
+
+ 
+       \begin{definition}\label{alpha} Let $R \in P_n$ and $c \in \tilde{P_n}$, define the following map,
+      
+      \begin{align*}
+          \alpha: P_n &\rightarrow \tilde{P_n}\\
+          R &\mapsto c_R
+      \end{align*}
+           
+such that for $S \in \mathcal{P}_n ^{+} $ and $\underline{x} \in R$ we have $\alpha (R)(S):=c_{R}(S)=c_{R,S}$ where
+
+
+$$c_{R,S}(\underline{x}) = Max \{ c \in \mathbb{Z} \mid c < \sum_{i \in S} x_i \}.$$
+
+\end{definition}
+
+\begin{remark}\label{floor}
+  Let $X_S:=\sum_{i \in S} x_i$ and for $\underline{x} \in R$ we write $c_{R,S}(\underline{x})=\lfloor X_S \rfloor$. Note the following inequalities for $\underline{x} \in R$,  $$\lfloor X_S \rfloor < X_S< \lceil X_S \rceil $$ 
+  
+  and 
+  
+  $$\lfloor X_I \rfloor + \lfloor X_J \rfloor \le \lfloor X_{I \sqcup J} \rfloor <X_{I \sqcup J}  <\lceil X_{I \sqcup J} \rceil \le \lceil X_{I} \rceil + \lceil X_{J} \rceil   .$$
+  
+  
+\end{remark}
+
+On connected components $R \in P_n$ the floor function $c_{R,S}$ is continuous and discrete away from the boundary, hence $c_{R,S}$ constant and independent of $\underline{x}$. 
+
+\begin{lemma}\label{msamap}
+  For $R \in P_n$ the function $\alpha(R)=c_R:P_n^{+} \rightarrow \mathbb{Z}$ is mildly super additive, in particular $\alpha$ is injective.
+\end{lemma}
+
+\begin{proof}
+       Let $\underline{x} \in R$ by the definition of $H(S,k)$ one has for $r,s,t \in \mathbb{Z}$ the inequalities, $r < X_{I} < r+1$, $s<X_{J}<s+1$ and $t<X_{I \sqcup J}<t+1$. Take $r,s,t$ to be maximum otherwise the hyperplanes of $H(S,k)$ intersect $R$, contradicting the connected condition. Sum the first two inequalities to obtain 
+       
+       $$r+s<X_{I \sqcup J}<r+s+2,$$ 
+   
+   and compare this to $t<X_{I \sqcup J}<t+1$ to obtain $t<r+s+2$ and $r+s<t+1$. Hence $t-2<r+s<t+1$ and as $r+s \in \mathbb{Z}$ one has $r+s= t$ or $t-1$, in turn $t=r+s$ or $t=r+s+1$. Hence $\alpha(R)$ is mildly super additive.   
+\end{proof}
+
+
+
+In \cite[Example 6.12]{pagani2020geometry} we see there exists an $f$ such that $R_f=\emptyset$. More generally for cases where $dim(R_f)<n$ we consider inequalities of the form, 
+
+$$f(S) \le X_S \le f(S)+1 $$
+
+from equation (\ref{Rfspace}) we denoted the region as $\overline{R}_f$. We conclude this section by recalling group actions on $P_n$. The group $S_n$ acts on $P_n$, consider the following action by $\sigma \in S_n$ on $\underline{x} \in \mathbb{R}^{n}$ permuting the coordinates,
+
+$$\sigma(x_1,\dots ,x_n) = (x_{\sigma(1)},\dots ,x_{\sigma(n)}) .$$ 
+
+\begin{remark}
+
+In $P_n$ we only consider the $S_n$ action on singletons
+
+\begin{equation}\label{singleton}
+ x_{\{i\}} \mapsto x_{\sigma(\{i\})},   
+\end{equation}
+
+where $\tilde{P}_n$ makes use of the poset structure on $\mathcal{P}^{+}_{n}$. 
+\end{remark}
+
+This induces an action on polytopes $R \in P_n$. To show $\sigma(R) \in P_n$ it is enough to show for all $H_{S,k} \in H(S,k)$ that $\sigma(H_{S,k}) \in H(S,k)$. Recall (\ref{hyperplane}) and fix an arbitrary $S$ and $k$, we have $H_{S,k} = \{\underline{x} \; | \sum_{i \in S} x_i=k\}$ and by (\ref{singleton}) we have $X_S \mapsto X_{\sigma(S)}$ and so
+$$\sigma(H_{S,k}) = H_{\sigma(S),k}.$$ 
+
+Hence $P_n$ is closed under the action of $S_n$.
+
+We also have the action of $\mathbb{Z}_2$ on $P_n$ take the action of $\mathbb{Z}_2$ on $\mathbb{R}^n$ to be reflection around the origin given by $1\cdot (x_i)=-x_i$, in particular
+$$1 \cdot H_{S_k} = H_{S,-k}.$$
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+\end{document}

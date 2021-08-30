@@ -1,10 +1,5 @@
-\documentclass[a4paper,12pt]{article}
-\newcounter{example}[]
-\newenvironment{example}[1][]{\refstepcounter{example}\par\medskip
-   \noindent \textbf{Example~\theexample. #1} \rmfamily}{\medskip}
-   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[a3paper,12pt]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{tikz-cd}
@@ -19,45 +14,36 @@
 \usepackage{hyperref}
 \usepackage{stackrel,amssymb,amsmath}
 \usepackage[nottoc]{tocbibind}
-\usepackage{pgfplots}
 \usepackage{rotating}
 \usepackage[autostyle]{csquotes}
 \usepackage{natbib}
 \usepackage{graphicx}
-\usepackage{natbib}
+%\usepackage{natbib}
 \usepackage{graphicx}
 
 \newtheorem{problem}{Problem}
 \newtheorem{attempt}{Attempt}
-
-
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{proposition}[theorem]{Proposition}
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
-\theoremstyle{indented}
+%\theoremstyle{indented}
 \newtheorem*{remark}{Remark}
 \newenvironment{titlemize}[1]{%
   \paragraph{#1}
   \begin{itemize}}
   {\end{itemize}}
   
-  \usepackage[T1]{fontenc}
-\usepackage{imakeidx}
-\makeindex[columns=3, title=Alphabetical Index, intoc]
-  
-  
-  %%%%%%%%%%5
-\newcommand{\rightarrowdbl}{\rightarrow\mathrel{\mkern-14mu}\rightarrow}
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
 
-\newcommand{\xrightarrowdbl}[2][]{%
-  \xrightarrow[#1]{#2}\mathrel{\mkern-14mu}\rightarrow
-}
-%%%%%%%%%%%%%%5
 
-\title{}
+
+\title{Combinatorics of $\tilde{P}_n$}
 \author{Rhys Wells}
 \date{\today}
 
@@ -66,15 +52,21 @@
 \maketitle
 \tableofcontents
 
+\begin{exercise}
+For $\phi \in Q_G$ show $S(d,\sigma)=S_\phi $ i.e the generalised stability in the genus $1$ case mentioned in the \cite[Section 3]{pagani2020geometry}. Why does taking the average work ? Automorphisms transitive of vertices. 
+\end{exercise}
 
+\begin{exercise}
+For a necklace curve $I_n$, if $\phi$ is non-degenerate show $|S_\phi|=n$.
+\end{exercise}
 
-\printindex
+\begin{proof}
+See \cite[p.17]{pagani2020geometry} for $S(\sigma,d)=\sigma(G)$.
+\end{proof}
 
-\bibliographystyle{alpha}
-\bibliography{bibtex}
+\begin{exercise} Show there exists a $\phi$ for $\sigma(G)$ of G for the simplest case of a graph where we mix the necklace and vine curve cases. (The $\phi$ case is in \cite[Example 5.4]{kass2019stability})
+\end{exercise}
 
 
 
 \end{document}
-
-

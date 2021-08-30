@@ -1,0 +1,111 @@
+\begin{titlemize}{Asides}
+\item\begin{definition}
+Let $\bar{J}_C$ be a fine compactified jacobian, then 
+
+$$S_{\bar{J}_C} = \{deg(L) \mid L \in \bar{J}_C \text{ a line bundle}\} \subseteq S(G_C).$$
+\end{definition}
+\item 
+
+\end{titlemize}
+
+\subsection{Universal polarised stability}
+
+\begin{definition}Denoted the set of compatible degeneration's of $\phi$ as,
+
+$$V_{1,n}^{NR} \subseteq \prod_{X \in \mathcal{M}_{1, n}^{\text{NR}}}} V(X) $$
+
+where $V_{1,n}^{NR} \cong \mathbb{R}^{n-1}$ by considering basis subcurves $D_i$ such that $V(D_i) \cong \mathbb{R}$.
+\end{definition}
+
+\subsection{Universal generalised stability}
+
+Two simple types of nodes are separating and non-separating. 
+
+
+
+For a curve $X$ and $\phi$ in $V^{d}(X)$ when is $\bar{{J}}_X (\phi) = \bar{\mathcal{J}}_{\phi}(X)$
+
+
+
+
+if $L$ is $\phi$-stable then $\phi$ gives $\bar{\mathcal{J}}_{\phi}(X)$. 
+
+
+
+
+
+Have fine compactied jacobian not defintied by $\phi$, denoted as $\bar{\mathcal{J}}(X)$
+
+and those defined by $\phi$, as $\bar{\mathcal{J}}(X).
+
+
+\begin{definition}
+Generalise stability: 
+Let $X^{'}$ be a subcurve of $X$
+$$\sigma_{\bar{J}}:= \{\text{deg} F_i: X^{'}(F)=X\}\subseteq S(X^{'})$$
+\end{definition}
+
+\begin{titlemize} {Asides}
+\item How to relate $Q_n$ to $\tilde{P}_n$. In $C_n$ each $f$ extends $n$ times (in $\tilde{P}_n$ each $f$ extends a non constant number of times). Can we apply a similar ordering to $\tilde{P}_n$? 
+
+\item For $f \in \tilde{P}_n$ we would have a mix of terms (permutation by $S_n$) such as, 
+$$1<_f 0 <_f 1 <_f  1<_f 0 <_f 1_f  <_f 0 .$$
+
+I don't think this would be correct as permutations would effect the MSA conditions. The ordering only works here because we have consecutive subsets.
+
+Does taking all permutations of this equation give $|\tilde{P}_n|$? 
+In the simplest case take $(1,0,\dots ,0)$ and after permutation $S_n$ get $(0,\dots ,1, \dots,0)$. And so on for more copies of 1. 
+If we tried to focus on $1<_f 0$ , cascade point we would lose information ie consecutive case is nice. For non consecutive it would not follow definition \ref{f_ordering}
+
+\end{titlemize}
+
+
+\begin{titlemize}{Aside}
+\item 
+Is $\tilde{P}_n$ a glued together case of consecutive case? 
+how do $f: C_{n-1} \rightarrow \mathbb{Z}$ glue to get $f \in \tilde{P}_n$. 
+\end{titlemize}
+
+\begin{titlemize}{For my understanding of injection, of consecutive ordering bijection}
+
+\item \begin{example}
+To better understand this exercise \ref{exercyclic}, let $f \in Q_2$ with $f(\{1\})=0,f(\{2\})=0$ and $f(\{1,2\})=1$. Possible $\tilde{f} \in Q_3^{f}$ are,
+
+$$\tilde{f}_A \; \text{where}\; \tilde{f}_A(\{1,2\})=1,\tilde{f}_A(\{2,3\})=0,\tilde{f}_A(\{1,2,3\})=1,$$
+$$\tilde{f}_B \; \text{where}\; \tilde{f}_B(\{1,2\})=1,\tilde{f}_B(\{2,3\})=1,\tilde{f}_B(\{1,2,3\})=1,$$
+$$\tilde{f}_C \; \text{where}\; \tilde{f}_C(\{1,2\})=1,\tilde{f}_C(\{2,3\})=1,\tilde{f}_C(\{1,2,3\})=2.$$
+
+By equation (\ref{QnCondition2}) $t=2 <_f 1=s$, we see that $s=1<2=t$ and $f(\{1,2\}) = f(\{1\}) + f(\{2\}) +1$. 
+
+Consider $\tilde{f}_C$ which satisfies the hypothesis of exercise \ref{exercyclic}, that is,
+
+$$\tilde{f}_C(\{1,2,3\}) = f(\{1,2\}) +1$$ 
+
+in particular in equation \ref{MaxOrdering}
+
+$f(\{1,2\})< \tilde{f}(\{1,2,3\})$
+
+then $$\tilde{f}_C(\{2,3\}) = f(\{2\}) +1.$$
+\end{example}
+
+
+\end{titlemize}
+
+\section{Burnside Lemma}
+
+Use burnsides lemma to count the number of orbits for $S_4$.
+Investigate burnsides lemmas use:
+
+$\#orbits = |\tilde{P}_n / S_n| = \frac{1}{n} \sum_{\sigma \in S_n} |\tilde{P}_n^{\sigma}|$
+
+for $\sigma$-fixed points.
+
+Example :
+
+For $\tilde{P}_3$ there are $3!$ orbits 
+
+$|\tilde{P}_3^{3-cycle}|=4, |\tilde{P}_3^{2-cycle}|=6, |\tilde{P}_3^{id}|=10$
+
+and there are two $3$-cycles, three $2$-cycles. 
+
+$\frac{1}{6}(2*4 + 3*6+ 10)=6$

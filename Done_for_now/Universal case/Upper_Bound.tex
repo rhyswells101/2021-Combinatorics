@@ -1,0 +1,216 @@
+\documentclass[a3paper,12pt]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Combinatorics of compactified universal Jacobians}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\subsection{Bounds for $|\tilde{P}_n|$}
+
+By considering the necessary conditions for MSA functions we formulated a generalisation with the aim of giving interesting bounds to $|\tilde{P}_n|$. I will now outline the construction of this space of objects, which we will denoted as $\Delta_{\mathcal{P}_{n}^{+}}$.\\
+
+Let $f:\mathcal{P}_{n}^{+} \rightarrow \mathbb{Z}$ be an increasing function by inclusion such that $f(\{i\})=0$. To construct an element of $\Delta_{\mathcal{P}_{n}^{+}}$, first geometrically realise the poset $\mathcal{P}_{n}^{+}$ with the standard $n$-simplex by a bijective order preservation of faces. The bijection is constructed as follows, assign an axis $x_i$ for each $i \in [n-1]$ and let $x_n$ correspond to the origin. Let each $S \in \mathcal{P}_{n}^{+}$ denote the interior of the corresponding face and assign the value $f(S)$ to it. We denote the corresponding object as $\Delta_f$. If we apply this construction to $f \in \tilde{P}_n$, we allow $\Delta_f$ to have the following properties.
+
+% , which suggests there is another possible way of defining $P_n$ so that $\alpha$ and $\beta$ are in bijection. \\
+
+
+\begin{definition}\label{defsimplefunctions}
+Let $f:\mathcal{P}_{n}^{+} \rightarrow \mathbb{Z}$ be an increasing function such that $f(\{i\})=0$ and,
+\begin{enumerate}
+    \item each $\Delta_f$ has a stratification into $k$-levels with each level a finite open union of faces of the form
+$$\bigcup_{i\ge k} f^{-1}(i) = f^{-1}(\{k,k+1,\dots ,n\}),$$
+\item and given $\{i_1,\dots,i_{l+1}\} \in \mathcal{P}_{n}^{+}$ removing any element $i_{p} \in\{i_1,\dots,i_{l+1}\}$ we have
+$$0 \le f(\{i_1,\dots,i_{l+1}\}) - f(\{i_1, \dots ,\hat{i_p},\dots,i_{l+1}\}) \le 1.$$
+% each $\Delta_f$ is strictly nested, that is
+\end{enumerate}
+\end{definition}
+
+\begin{example}
+For $f_3 \in \tilde{P}_3$ we can construct the following,
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tikzpicture}[scale=0.6]
+		\node [style=none] (0) at (0, 0) {};
+		\node [style=none] (1) at (5, 0) {};
+		\node [style=none] (2) at (2.5, 4) {};
+		\node [style=none] (3) at (-0.5, -0.25) {$\{3\}$};
+		\node [style=none] (4) at (2.5, 4.5) {$\{2\}$};
+		\node [style=none] (5) at (5.5, -0.25) {$\{1\}$};
+		\node [style=none] (6) at (0.25, 2.5) {$\{2,3\}$};
+		\node [style=none] (7) at (4.5, 2.5) {$\{1,2\}$};
+		\node [style=none] (8) at (2.5, -0.75) {$\{1,3\}$};
+		\node [style=none] (9) at (8, 0) {};
+		\node [style=none] (10) at (13, 0) {};
+		\node [style=none] (11) at (10.5, 4) {};
+		\node [style=none] (12) at (7.5, -0.25) {$0$};
+		\node [style=none] (13) at (10.5, 4.5) {$0$};
+		\node [style=none] (14) at (13.5, -0.25) {$0$};
+		\node [style=none] (15) at (8.25, 2.5) {$0$};
+		\node [style=none] (16) at (12.5, 2.5) {$1$};
+		\node [style=none] (17) at (10.5, -0.75) {$0$};
+		\node [style=none] (18) at (2.5, 1.5) {$\{1,2,3\}$};
+		\node [style=none] (19) at (10.5, 1.5) {$1$};
+		\draw (2.center) to (0.center);
+		\draw (2.center) to (1.center);
+		\draw [style=new edge style 0] (0.center) to (1.center);
+		\draw (11.center) to (9.center);
+		\draw (11.center) to (10.center);
+		\draw [style=new edge style 0] (9.center) to (10.center);
+\end{tikzpicture}
+\end{center}
+    \caption{Underlying $3$-simplex and $\Delta_{f_3}$.}
+    \label{fig:my_label}
+\end{figure}
+\end{example}
+
+\begin{remark}
+By construction we have the following inclusion map $\tilde{P}_n \rightarrow \Delta_{\mathcal{P}_{n}^{+}}$ with $f  \mapsto \Delta_f$. There exist examples of $\Delta_f$ for $n=4$ such that $f$ is not MSA.
+\end{remark}
+
+
+% that are stratified by $k$-level and strictly nested, and consider examples for $2\le n\le 4$.
+
+\section{Combinatorial upper bound}
+
+This work might be realted to. 
+\cite{caporaso2019combinatorics}
+
+\subsection{Mapping $\tilde{P}_n$ to $\Delta_{\tilde{P}_n}$}
+
+We now give an alternative description of $\tilde{P}_n$ as a stratified space of simplices $\Delta_{\tilde{P}_n}$. We first geometrically realise the poset $\mathcal{P}_{n}^{+}$ with the standard $n$-simplex by a bijective order preservation of faces. The bijection is constructed as follows, assign an axis $x_i$ for each $i \in [n-1]$ and let $x_n$ correspond to the origin. Each $S \in \mathcal{P}_{n}^{+}$ denotes the interior of the corresponding face and we assign the value $f(S)$ to it. We denote the corresponding object as $\Delta_f$. By construction it has the following properties.
+
+\begin{definition}\label{defsimplefunctions}
+Let $f:\mathcal{P}_{n}^{+} \rightarrow \mathbb{Z}$ such that $f(\{i\})=0$. Each $\Delta_f$ has a stratification as $k$th levels with each level a finite open union of faces of the form
+$$\bigcup_{i\ge k} f^{-1}(i) = f^{-1}(\{k,k+1,\dots ,n\}).$$
+
+In addition we say $\Delta_f$ is strictly nested, that is given a strata $\Delta^{l}$ with $l \in [n]$ defined by $\{i_1,\dots,i_{l+1}\}$ of dimension $l$, with a face defined by $\{i,\dots,\hat{i_p},\dots,i_{l+1}\}$, the value of the face is given by 
+
+$$0 \le f(\{i_1,\dots,i_{l+1}\}) - f(\{i_1, \dots ,\hat{i_p},\dots,i_{l+1}\}) \le 1.$$
+
+\end{definition}
+
+By this definition we have the following inclusion map,
+\begin{align*}
+\tilde{P}_n &\rightarrow \Delta_{\tilde{P}_n}\\
+ f & \mapsto \Delta_f.
+\end{align*}
+
+\begin{remark}
+ Strictly nested is exactly the condition to be $f$-min/max (see \ref{fminmax}) in the case where for $A \subseteq B$, and $B \setminus A$ is a single new element.
+\end{remark}
+
+\begin{example} Let $f \in \tilde{P}_3$ be
+
+$$f(\{1,2\}) =1,
+f(\{1,3\}) =0,
+f(\{2,3\})=0,
+f(\{1,2,3\})=1.$$
+
+we have the following $\Delta_{f}$,
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/simplexP3.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/kthlevels.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+By the strictly nested condition for $\Delta_{\tilde{P}_3}$ the interior triangle can only have value $2$ if all its faces have values at least $1$.
+
+\end{example}
+
+
+\begin{remark}
+The function $f$ and $\Delta_f$ are identified on values attached to the strata. The conditions for $\Delta_{\tilde{P}_n}$ are not equivalent the MSA definition (these are equivalent for $n=2$ and $3$). This is seen in example \ref{simpNotMSA} as it satisfies definition \ref{defsimplefunctions} but is not MSA.
+\end{remark}
+
+\begin{example}\label{simpNotMSA}
+Let $\tilde{f}$ have the following mappings
+
+$$\tilde{f}(\{1,2\})=1, \tilde{f}(\{3,4\})=1, \tilde{f}(\{1,2,3\})=1, \tilde{f}(\{1,2,4\})=1,  \tilde{f}(\{2,3,4\})=1, \tilde{f}(\{1,2,3,4\})=1,$$
+
+In particular $\tilde{f}$ is not MSA. Consider the following $\Delta_{\tilde{f}} \in \Delta_{\tilde{P}_4}$ with $\tilde{f}(\Delta^{3})=1$, two faces with $\tilde{f}(\Delta^{2})=1$ and $\tilde{f}(\Delta)=1$ on the highlighted edges otherwise $\tilde{f}(\Delta)=0$.
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/SimpNotMsa.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+\end{example}
+
+\begin{titlemize}{Question}
+\item Check that this example would not be considered a constructible sheaf (ie not made of local systems). 
+\item Does the meaning of strata correspond to all those of a given dimension or a specific piece of those of a given dimension. 
+\end{titlemize}
+
+The $\mathbb{Z}_2$ action on $\tilde{P}_n$ given by equation (\ref{Z2funct}) can be translated to $\Delta_{\tilde{P}_n}$. For a strata $\Delta$ we act on its value by,
+
+$$\bar{f}(\Delta) =\text{dim}(\Delta)-f(\Delta).$$
+
+Given this action and the $S_n$ action on $\Delta_{\tilde{P}_n}$ for $n=2,3,4$ one can count all count all $S_n$ orbits and characteristics.
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+\end{document}

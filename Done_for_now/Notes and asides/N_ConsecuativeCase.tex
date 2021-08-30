@@ -1,0 +1,121 @@
+\documentclass[a3paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Combinatorics of $\tilde{P}_n$}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\begin{proof}
+To show $|Q_n=n!|$, assume $|Q_{n-1}| = n-1!$ and for each $f \in Q_{n-1}$ by the map $\psi:Q_n^{f} \rightarrow [n]$ we assign $n$ extensions $\tilde{f} \in Q_n^{f}$.
+
+\end{proof}
+
+\begin{remark}\label{lessconditions}
+Note $Q_n$ have less MSA conditions than $\tilde{P}_n$ as $C_n \subseteq \mathcal{P}_n^{+}$. In particular when $A \subset B$ we require $B\setminus A \in C_n$.
+\end{remark}
+
+\begin{example} Can we obtain the consecutive extensions of $f$ in a similar manner to those of $\tilde{P}_n$? That is uning $\epsilon$ extensions with f-min/closed? 
+
+\begin{titlemize}{Question}
+\item Do we get $6$ extensions if we restrict from $\mathcal{P}_3^{+}$ to $C_3$ from $\tilde{P}_3^f$ in Figure \ref{epdiagram} by deleting the node $\{1,3\}$.
+\end{titlemize}
+
+Consider $f \in \tilde{P}_3$ from Example \ref{graphexample}. By deleting the node $\{1,3\}$ from Figure \ref{epdiagram} we have the following possible extensions. Restricting from $\mathcal{P}_3^{+}$ to $C_n$ by deleting the $\{1,3\}$ node and including the empty and everything set we have $8$ "extensions".
+\begin{align*}
+\epsilon_{f}^{-1}(1) = \{& \emptyset,\\
+&\{\{1\},\\
+&\{\{2\},\{2,3\}\},\\
+&\{\{1\},\{2\},\{2,3\}\},\\
+&\{\{1\},\{2\},\{3\},\{2,3\},\{1,2,3\}\},\\
+&\{\{1\},\{2\},\{1,2\},\{2,3\},\{1,2,3\}\},\\
+&\{\{1\},\{2\},\{3\},\{1,2\},\{2,3\},\{1,2,3\}\}\\
+&\{\{2,3\}\},\\
+\end{align*}
+
+Consider instead $f:C_3 \rightarrow \mathbb{Z}$ such that $f(\{1,2\})=1, f(\{2,3\})=0$ and $f(\{1,2,3\})=1$.
+
+\begin{titlemize}{Question}
+\item Can $Q_3^f$ be constructed in a similar manner to $\tilde{P}_3$? Should we include the empty and everything extensions in $Q_n$? 
+\item By deleting $\{1,3\}$ are these extensions the same as $Q_3^f$? Is this because of remark \ref{lessconditions}?  
+\end{titlemize}
+
+We previously agreed we would have the following for $Q_3^f$.
+
+\begin{align*}
+\epsilon_{f}^{-1}(1) = \{
+&\{1\},\\
+&\{\{2\},\{2,3\}\},\\
+&\{\{1\},\{2\},\{2,3\}\},\\
+&\{\{1\},\{2\},\{3\},\{2,3\},\{1,2,3\}\},\\
+&\{\{1\},\{2\},\{1,2\},\{2,3\},\{1,2,3\}\},\\
+&\{\{1\},\{2\},\{2,3\},\{1,2,3\}\}\}\\
+\end{align*}
+
+of which there are $6$.
+
+\begin{titlemize}{Question}
+\item Why is there no $\{2,3\}$, everything and $\emptyset$ extension? 
+\item The notion of $f$-maximal and $f$-minimal doesn't work here for example 
+$$f(123)=f(2)+f(13).$$
+But there is no $\{1,3\}$, so it does not make sense for arrow at $\{2\}$ node to be red ($f$-maximal). 
+\end{titlemize}
+
+\end{example}
+
+
+\maketitle
+\tableofcontents
+
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+\end{document}
+

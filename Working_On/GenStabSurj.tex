@@ -1,0 +1,429 @@
+\documentclass[a3paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+\title{Combinatorics of $\tilde{P}_n$}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\subsection{returning 300821}
+
+Since we want to classify the genus 2 case (i.e aim to understand FCJ over $\overline{M}_{2,1}$). Therefore we will need to do checks (which are: can we always find a phi for sigma(G) for all assingments (around origin is enough)?) for each graph in the stratification.
+
+We already know the vine curve case. 
+
+\subsection{Meeting 230821}
+
+We only care about when sigma(G) is of size of complexity the oda result for non-degernate get the complexity (only care about non-degenerate otherwise not fine). 
+
+In the triangle case when See example.pdf for a case where the d'-tuple are all different but give sigma(G) of size 3. So far I have only looked at the d'tuple kwith two different starting d' conditions. We want to consider the case where we can have five different such assignments in the d'-tuple.
+
+If we get sigma(G) =5 woudl be good to show picture of sig'(di,gammai) decomposiniosn and overlap.
+
+\subsection{Tropical Jacobian}
+
+See \cite{oda1979compactifications} for a description.
+
+$$C_1(G: \mathbb{R}) \righarrow H_1(G:\mathbb{R})$$
+
+$$Jac(G)=H_1(G:\mathbb{R})/ H_1(G:\mathbb{Z})$$
+
+
+
+\subsection{200821 returning from onenotes and coding}
+
+Fix an origin in $S^{-2}(G)$ this is $d2'=(0,-2,0)$.
+
+assign a ordering to spanning trees start with $Gamma_1=12,23$ then $Gamma_2=12,13$, $Gamma_3 =12,13$, $Gamma_4 =23,13$,$Gamma_5 =23,13$.
+
+Want to find a $d-tuple$ ie (d2',d1',d1',d1',d1') or (d1',d2',d1',d1',d1') so that $\sigma(G)$ has 5 elements. Therefore we just need d1'. Focus on (d2',d1',d1',d1',d1') first
+
+Set d1' to be arbitrary of the form $d1'=(a,-a-b-2,b)$
+
+Next get $\sigma'(d2',\Gamma_1)$ with 3 terms and $\sigma'(d1',\Gamma_2)$ with 4 terms, and consider where overlaps occur.Suppress the spanning tree. In particular we want to exclude all but finitely many $d \in S^{-2}(G)$ (\cite{klivans2018mathematics}?). To do so we look at the overlaps of $\sigma'(d2')$ $\sigma'(d1')$ (remember there may be another terms added to $\sigma(G)$ by union with $\sigma'(d1',\Gamma_4)$).
+
+\begin{example}
+For a large, ie a=1000 then 
+$$$|\sigma'(d2')$ \cap $\sigma'(d1')$|=7.$$
+and there are no common terms.
+\end{example}
+
+In order to get $|\sigma(G)|=5$ we need atleast 2 overlaps of $\sigma'(d2',\Gamma_1)$ $\sigma'(d1',Gamma_2)$. Therefore we wish to exclude those with $|\sigma'(d2') \cap \sigma'(d1')|\le 1$.
+
+To see whether there are overlaps, we can go by inspection starting with low a terms.
+
+For any a term we see we never get 3 overlaps.
+
+if $|\sigma'(d2') \not \subseteq \sigma'(d1')|$ then $|\sigma'(d2') \cup \sigma'(d1')|\ge 5$.
+
+\begin{example}
+In this case a sharp bound exists for a and b to be 
+$a=\{0,1\}$ and $b=\{-1,0,1\}$ (these are independant).
+
+Instead of checking overlaps explicitly we can use the metric method (algo) to look for the smallest a,b terms where no overlap occurs (then exlude these).
+
+We cant take the metric as d1' are not defined yet as it is a infinte set and so the k the distance can be infinite. 
+
+\end{example}
+
+\begin{titlemize}{What I have done:}
+\item For theses $\sigma(G)$ for -3<a,b<3 see if we can find a $\phi$ (not necessarily the average) that generates $\sigma(G)$. I.e For d in sigma(G) check $|d_1 -\phi_1|<3/2,|d_2 -\phi_2|<2,|d_3 -\phi_3|<3/2$ and $deg(\phi)=0$. 
+\item Done 1): For -3<a,b<3 I checked if $|\sigma(G)|=5$. There are none.
+\item Re-did the overlap argument in 1) for (d1,d2,d1,d1,d1) did not find $|\sigma(G)|=5$.
+\end{titlemize}
+
+\begin{titlemize}{To do:}
+\item For theses $\sigma(G)$ for -3<a,b<3 see if we can find a $\phi$ (not necessarily the average) that generates $\sigma(G)$. I.e For d in sigma(G) check $|d_1 -\phi_1|<3/2,|d_2 -\phi_2|<2,|d_3 -\phi_3|<3/2$ and $deg(\phi)=0$. 
+\item Ans: For d in $\sigma(G)$ plot components of all d's and try to find a phi compnents by perturbing them. What happens is that you get two d_i(v) and d_j(v) so that if you move \phi(v) the then either d_i(v) or d_j(v) no longer satisfy the phi in-equalities.
+\end{titlemize}
+
+d1' terms near d2' which are semistable wrt taking phi the average are
+
+$$\{(0,-3,1),(0,-1,-1)(1,-1,-2),(1,-2,-1),(1,-3,0),(1,-4,1),(0,-2,0)\}$$
+
+
+\begin{remark}
+For a general graph we can use the d infinity metric
+
+$$max \{k \in \mathbb{Z} \mid |d_i(v) - d_j(v) | <k , \forall v \in V\}$$
+\end{remark}
+
+\subsection{Meeting Notes 170821}
+Want to focus on why we are caring about the overlaps.
+
+look at the intersection of 
+
+For G1 we have two assignments (d2,d1,d1,d1,d1) an
+d (d1,d2,d1,d1,d1) where $\Gamma_1=G((v1,v2),(v2,v3))$.
+
+To make the problem finite nicola suggests looking for d1 terms locally around origin (-2,0,0) as those 
+
+Let D=3
+
+\begin{titlemize}{Tasks}
+\item 
+\end{titlemize}
+
+\subsection{metrics}
+% To get finite degree -g d terms to test.
+
+For general graphs suggest using the maximum metric 
+$$d((x1 , y1), (x2 , y2)) = max(|x1 - x2|, |y1 - y2| ).$$
+to make the problem finite.
+
+For d1 in $S^{-2}(G)$ take arbitrary like d1=(a,-a-b-2,b)
+get $|a|<k$, $|b|<k$ and $|a+b|<k$.
+
+not for d-terms in d-tuple but for elements in $\sigma^{'}(\Gamma_i,d_i)$ $\sigma^{'}(\Gamma_j,d_j)$
+
+
+\subsection{Meeting Notes 020821}
+
+\subsubsection{Tasks}
+
+\begin{titlemize}{Find examples to test if $\psi_G$ is surjective.}
+\item Using the current graph example which I want to study whether $\psi_G$ is surjective is discussed in \cite[(4),p42]{oda1979compactifications}.
+\item For $G$ we have $Aut(G)=Z_2 \times Z_2$. Using the $Aut(G)$ we have two orbits of spanning trees $\Gamma_1$ and the rest. Let $\Gamma_1$ be the spanning tree with edges $v_2 - v_1$ and $v_3-v_2$. Pick a $d_2 \in S^{-2}(G)$ i.e. the origin=$(-2,0,0)$ (allowed up to translation).
+\end{titlemize}
+
+\begin{titlemize}{Coding ideas}
+\item Reduce the problem to something finite that the computer can better handle. Consider the action of automorphism group of spanning trees. 
+\item Code suggestion: try $(d_2,d_1,d_1,d_1,d_1)$ and $(d_1,d_2,d_1,d_1,d_1)$ with spanning trees in that given order. As in $S^{-2}(G)$ need to make a choice for the origin (unlike in S(G) where (0,0,0) can be taken). 
+\item Results only give the case where ABKS gives $|\sigma(G)|=5.$.
+\item Need to be able to decide when a graph is exhausted and when to move on. 
+
+\begin{definition}
+Let $\phi \in V(G)$, we say $d \in S(G)$ is $\phi$-(semi)stable if
+
+\begin{equation*}\label{stabinequal}
+\Bigl| \sum_{v \in Vert(G_0)} d(v) - \phi(v)\Bigr| \underset{(\le)}{<}  \frac{\# (E(G\setminus G_0) \cap E(G\setminus G_0^{c}) )}{2},
+\end{equation*}
+
+for all $\emptyset \subsetneq G_0 \subsetneq G $, where $G_0$ is a complete subgraph and $G_0^{c}$ denotes the complete subgraph on the complement vertices to $G_0$. Denote the set of $\phi$-stable degrees by
+$$\sigma_{\phi}(G):=\{d : \text{Vert}(G) \rightarrow \mathbb{Z} \mid \phi \text{-stable}\} \subseteq S(G).$$
+\end{definition}
+
+\item Assume for $d_1 \neq d_2 \in S^{-2}(G)$ and let
+
+$$D:=Max \{|d_1(v)-d_2(V)|>k, \forall v \in V\}$$.
+
+% using < would make sure are closer together. But if choose > then we take all integers below k i.e k-1,k-2... but not 0 otherwise just ABKS.
+
+Use this condition to get a finite list of $d_1 \in S^{-2}(G)$ terms to check.
+
+And check that we $|\sigma(G)|=5$ and then check to see if axiom 1 holds.Note far away d terms are likely to be disjoint i.e not much overlap in $\sigma(G)$. See whiteboard for calcs. Try $D \in \{3,4,5\}$ (possibley 5 as its the complexity).
+
+\end{titlemize}
+\subsubsection{Notes}
+
+\begin{titlemize}{Show $\psi_G$ is not surjective.}
+\item We hope $\psi_G$ is not surjective otherwise theory is boring.
+We only have a small pool of examples so far for testing if $\psi_G$ is surjective. 
+\item Two possibilities: 
+1) is surjective, then the theory is described completely by Oda.
+2) not surjective, then we should take a thickening of the stability space V(G)  to recover $S \in \Sigma_G$ and $V(G)$ will be a shadow of this space.
+\end{titlemize}
+
+
+
+\subsection{Meeting Notes 270721}
+
+
+\subsubsection{Tasks}
+
+Construct $\tilde{\sigma}(G)$ with $d_i^{'}$ assignments not all the same (unlike in \cite{AN_2014}, if they are all the same but not 0 then translate). We wish to give a counterexample of lemma \ref{conject}. Break axiom 1 into two,
+
+\begin{enumerate}
+\item  there is at least one $e_i$ for each orbit,
+\item no more that one $e_i$ for all orbits. (To show the counterexample Nicola was pushing me towards showing this)
+\end{enumerate}
+
+
+
+\begin{titlemize}{Question Harder}
+\item Assuming the addition property $|\tilde{\sigma}(G)|=k(G)$ ("global property"). Consider $d^{'}_1$ and $d^{'}_2$ under these conditions do these satisfy axiom1?  (Try to disprove with basic examples by hand). I.e. find a counterexample for lemma \ref{conject}
+\end{titlemize}
+
+\begin{titlemize}{Ideas:}
+\item  By taking $e_i,e_j \in \tilde{\sigma}(G)$ and showing they are both in the same orbit. When checking axiom 1 by hand Nicola recommends the greedy algorithm (in the case of four edges).
+\item Taking completion of a given $d^{'}$. By fixing $d^{'}$ and constructing $\cup_{i \in I}\sigma^{'}(G)(d^{'},\Gamma_{i})$. Do this for $d^{'}_1$ and $d^{'}_2$ try example what do we get. 
+\item (two cases $\Gamma_i=\Gamma_j$ or $\Gamma_i \neq \Gamma_j$)
+\end{titlemize}
+
+\begin{titlemize}{Checks}
+\item How do we check if all $d_i^{'}$ are all the same and not just a translate of \cite{AN_2014}? Given a $\tilde{\sigma}(G)$ how do we know if this can be obtained in a trivial way (by a unique assignment $d^{'}$)? Given $e \in \tilde{\sigma}(G)$ take min on vertices to get $d^{'}$ and check if total degree is correct ($-g$).
+\end{titlemize}
+
+\begin{example}
+In Example.pdf is an example with non-unique $d^{'}$. 
+\end{example}
+
+\begin{example}Here is an example where it works.
+Consider the triangle with $$\tilde{\sigma}(G)=\{(1,0,0),(0,1,0),(0,0,1)\}$$
+(This is in total degree 1 however will need to change) take then $(0,0,0)$.
+\end{example}
+
+\begin{titlemize}{Question Easier: Done}
+\item Take $\tilde{\sigma}(G)$ not necessarily with $|\tilde{\sigma}(G)|=k(G)$ and show this fails axiom 1. See paper, using greedy see $E_{23}$ is winnable.
+\end{titlemize}
+
+
+
+% \subsubsection{Tertiary information}
+% Interpreting the attached lengths of metric graphs. Metric graphs are given when considering "smoothenings" of nodal curves (the length is given by the $k$ integer of $xy=t^k$ reduction).
+
+% \subsubsection{Notation}
+% Call the starting terms $d^{'}$ assignments. 
+% Integral divisors mean divisors are supported on the vertices.
+
+
+\subsection{Generalised stability conditions}
+
+We are now ready to define the conditions for generalised stability conditions $\sigma(G) \subseteq S(G)$. Let $\mathcal{ST}(G)$ denote the set of spanning trees of $G$. For a fixed spanning tree $\Gamma$, denote the set of source maps of $G \setminus \Gamma$ to be $\mathcal{O}_{\Gamma}=\{s:Edges(G \setminus \Gamma) \rightarrow Vert(G)$\} assigning a source vertex to each edge, equivalently let $\mathcal{O}_{\Gamma}$ denoted the set of orientations on $Edges(G \setminus \Gamma)$. In order to define $\sigma(G) \subseteq S(G)$ define for each spanning tree $\Gamma_i$ and $d^{'} \in S^{-g}(G)$ the following set of divisors
+
+$$\sigma^{'}(\Gamma,d^{'}
+):= \{ d \in S(G) \mid d= d^{'} + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} \text{ for } s \in \mathcal{O}_{\Gamma}  \}.$$
+
+\begin{definition}\label{axioms12}
+A generalised stability condition for $G$ is a subset $\sigma(G) \subseteq S(G)$ such that,
+
+\begin{enumerate}
+    \item the set $\sigma(G)$ is a complete set of representatives for the chip-firing action and
+    
+\item for each spanning tree $\Gamma_i$ for $i \in I$, there exists $d_i^{'} \in S^{-g}(G)$ such that 
+
+$$\sigma(G) = \bigcup_{i\in I} \sigma^{'}(\Gamma_i,d_{i}^{'}).$$
+
+\end{enumerate}
+\end{definition}
+
+\begin{titlemize}{Pointers}
+\item In \cite[pg.6]{shen2017break} there is an outline for break divisors and potentially a better way of stating $\sigma(G)$ (metric graphs).
+\item Break divisors are discussed in \cite[Definition 1.1.16]{KarlBreak} and correspond to $v$-rooted orientations \cite[Prop 1.2.20]{KarlBreak}, in \cite[Section 4.1.1]{KarlBreak} he discusses the poset of break divisors.
+\item \cite[Chapter 3.1.2]{yuenMatriodsgeometric} discusses break divisors along the same lines we have in particular \cite[Prop 3.1.2]{yuenMatriodsgeometric}.
+\end{titlemize}
+
+\begin{titlemize}{Question}
+\item Do our $\sigma(G)$ (shifted in degree) correspond to generalised break divisors as in \cite[Chapter 3.5]{yuenMatriodsgeometric}.
+\end{titlemize}
+
+\begin{definition} Denote the set of all generalised stability conditions by
+$$\Sigma_{G} = \left\{ \sigma(G) \subseteq S(G) \mid \sigma(G) \text{ is a generalised stability condition} \right\}\subseteq 2^{S(G)}.$$
+\end{definition}
+
+We use \cite[Lemma 3.20]{Kass_2017} to give the well-defined map $\psi_G: Q_G \rightarrow \Sigma_G$. Here is a simplified version of it.
+
+\begin{lemma}{\cite[Lemma 3.20]{Kass_2017}}
+Let $\phi_1,\phi_2 \in V(G)$ with non-degenerate $\phi_1$. Then for all $d \in \sigma_{\phi}(G)$ is in $\sigma_{\phi_2}(G)$ if and only if $\phi_2 \in P(\phi_1)$. In particular the following map is well defined,
+\begin{align*}
+    \psi_G: Q_G &\rightarrow \Sigma_G\\
+    \phi \in P &\mapsto \sigma_{\phi}(G).
+\end{align*}
+\end{lemma}
+
+\begin{titlemize}{Side question}
+\item Is $\psi_G$ injective by \cite[Lemma 3.20]{Kass_2017}?
+% \item Do $\sigma_{\phi}(G)$ satisfy the axioms 1 and 2 of definition \ref{axioms12}, i.e. why are $\sigma_{\phi}(G) \in \Sigma_G$? What Nicola said:"This is geometrically motivated in \cite{oda1979compactifications}, in a proof of compactification (proper) where axiom 1 corresponds to universally closed and axiom 2 is separation."
+\end{titlemize}
+
+\begin{titlemize}{Main objective}
+\item Show for each graph $G$, that all fine generalised stability $\sigma(G)$ of the form $\sigma_{\phi}(G)$ for some non degenerate $\phi \in V(G)$. Equivalently, that $\psi_G: Q_G \to \Sigma_G$ surjective for all $G$.
+\end{titlemize}
+
+\subsection{Constructing $\sigma(G)$}
+
+Instead of answering the surjectivity question, we instead "try to construct $\sigma(G)$ from $\mathcal{ST}(G)$" to satisfy definition \ref{axioms12}. To construct a $\sigma(G)$ we use axiom 2 for a choice $d_i \in S^{-g}(G)$ for each given $\Gamma_i$, denote this constructed set as $\tilde{\sigma}(G)$. Let $k(G)$ be the complexity of $G$, to satisfy axiom 1 a necessary condition is $|\tilde{\sigma}(G)|=k(G)$. 
+
+\begin{theorem}[Fact]
+For any $G$, for each $\Gamma_i \in \mathcal{ST}(G)$ fix $d_i \in S^{-g}(G)$. If we construct the set $\tilde{\sigma}(G)=\{e_1,\dots,e_t\}$ from $\{d_1,\dots,d_{k(G)} \}$ by applying axiom 2, then 
+
+$$t \ge k(G).$$
+\end{theorem}
+
+\begin{proof}
+% These are my ideas:\\ 
+
+% Take all $d_i$ to be the same, by translating take these to be 0. Then for each $i$ we have $e_i=\sum_{l \in E(G\setminus \Gamma_i)} \delta _{s(l)} \text{ for } s \in S_{\Gamma_i}$, as there are $k(G)$ spanning trees so $t \ge k(G)$\\
+
+% "For each $d_i$ and $\Gamma_i$ there is at least one $\sum_{l \in E(G\setminus \Gamma_i)} \delta _{s(l)} \text{ for } s \in S_{\Gamma_i}$ and so $|\sigma^{'}(\Gamma,d^{'}
+% ) |\ge 1$ (q: what stops them from all overlapping when we take the union? to form $\tilde{\sigma}(G)$)."(possible remove)\\
+
+If we assume $\sigma(G)$ is a generalised break divisor, then this follows from \cite[Theorem 3.5.1]{yuen2017geometric} (I think $\mathcal{BD}_{I_G}(G)$ corresponds to $\tilde{\sigma}(G)$ for some $I_G$). Nicola has a proof of this.
+\end{proof}
+
+% \begin{example}
+% To get $t=k(G)$ in $\tilde{\sigma}(G)$ we need to maximise overlaps when taking the union of $\sigma^{'}(\Gamma_i,d_i^{'})$. Finish the code to construct $\tilde{\sigma}(G)$ to give examples other than the triangle graph case.
+% \end{example}
+
+\begin{lemma}\label{conject}
+Given a $G$ and $\tilde{\sigma}(G)$ such that $|\tilde{\sigma}(G)|=k(G)$, then it satisfies axiom $1$.
+\end{lemma}
+
+Note for any $G$ we have the set of divisors $\sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} \text{ for } s \in \mathcal{O}_{\Gamma}  $ for a given orientation, we will call the set of such divisors on all $\Gamma_i$, IBD. A special case is given in \cite[Thm 1.3, thm 4.21]{AN_2014} where $\sigma(G)=IBD$ is shown to satisfy lemma \ref{conject}, there all $d_{i}^{'}=0$ (which are not in $S^{-g}(G)$, so need to shift the degree in the definition \ref{axioms12}).\\
+
+Suppose we have $\tilde{\sigma}(G)$ with $|\tilde{\sigma}(G)|=k(G)$ with $e_i,e_j \in \tilde{\sigma}(G)$. How do we know if these divisors are in separate orbits i.e form a complete set of representatives? In particular we wish to know if $E:=e_i-e_j \nsim 0$ by chip-firing equivalence (where $E \in S(G)$). We need to do this pairwise for all $e_i,e_j \in \tilde{\sigma}(G)$ to show they are different, then by the pigeon hole principle we have one for each class. \\
+
+% (if $e_j \in |e_i|$ (a complete linear system $|D|=\{E \in Div(G)\mid E \le 0, E \sim D\}$)) in which case $\tilde{\sigma}(G)$ would not be a complete set of representatives.\\
+
+
+\begin{definition}{\cite[Def. 1.14]{corry2018divisors}}
+If D is winnable if and only if $D$ is linearly equivalent to an effective divisor (positive on each vertex). In total degree 0 the only D with all $D(v_i)\ge 0$ is $0$. 
+\end{definition}
+
+
+% \begin{remark}
+% The Cori-Le Borgn algorithm (similar to Dhar) gives a bijection from $q$-reduced divisors to spanning trees.
+% \end{remark}
+
+% \begin{titlemize}{Greedy algorithm \cite[Section 3.1]{corry2018divisors}}
+% \item Calculations take exponential time and is less efficient as only looks at a single vertex at a time.
+% \item Doesn't give q-reduced only winnable (effective).
+% \end{titlemize}
+
+% \begin{titlemize}{Dhar's algorithm }
+% \item Polynomial time.
+% \item There exists a unique $q$-reduced divisor 
+% \item More global in operation.
+% \item Used in \cite{AN_2014}
+% \end{titlemize}
+
+Dhar's algorithm \cite[Section 3.4.1]{corry2018divisors} can be used to check if $E \sim 0$. For a divisor $E$, \cite[Theorem 3.7]{corry2018divisors} states we can obtain a unique $q$-reduced divisor and in particular we have the statement \cite[Theorem 3.8]{corry2018divisors}. Suppose $E$ is $q$-reduced (on all other vertices $E(v_i)\ge 0$) if $E(q)\ge 0$ then as $Deg(E)=0$ so $E=0$ (winnable). Therefore we aim check if $E(q)<0$ ($E$ is unwinnable).\\
+
+\begin{remark}
+By \cite[Corrolarly 4.9, (3)]{corry2018divisors} we have a bijection with acyclic orientations and maximal superstable configurations (which coincides with a $q$-reduced divisor where $\tilde{V}=V\setminus{q}$).
+\end{remark}
+
+\begin{titlemize}{Question}
+\item Is there another way using the form of $e_i \in \tilde{\sigma}(G)$ and forming a bijection with $J(G)$ to show axiom $1$?
+\end{titlemize}
+
+\begin{titlemize}{Studying \cite{AN_2014} }
+\item Investigate how \cite{AN_2014} show IBD are a section and use \cite[Theorem 1.3, Thm 4.21]{AN_2014} as a guide to show lemma \ref{conject}. Do they do something similar to $E(q)<0$? 
+\item For $\sigma(G) \subseteq S(G)$, do we have the bijection $\sigma(G) \rightarrow Jac(G)$?
+\end{titlemize}
+
+% From the proof of \cite[Thm 4.21]{AN_2014} need to make use of metric graphs.
+
+\subsection{Using Riemann Roch and $r(E)$}
+
+Recall the definition of combinatorial rank in \cite[Definition 4.2]{baker2016degeneration}. By \cite[Exercise 5.1]{corry2018divisors} for $E\in S(G)$ we have $r(E) \le max\{-1,deg(E)\}=0$, so $r(E) \le 0$. If $r(E)=0$ then $E$ is barely winnable. By \cite[Exercise 5.2]{corry2018divisors} $E$ is principal and $e_i$ and $e_j$ are linearly equivalent \cite[p.20]{corry2018divisors}. Else $r(E)=-1$ and $E$ is unwinnable. Hence it is enough to show $r(E)=-1$.
+
+\subsection{Overview of larger context}
+
+\begin{enumerate}
+    \item Compactified Jacobians are discussed in \cite[Section 2.2]{alexeev2004compactified} discussing the Oda paper.
+    \item \cite[Section 3.3]{caporaso2019combinatorics} discusses the combinatorics of compactified Jacobians
+\end{enumerate}
+
+\begin{titlemize}{Universal case}
+\item In the universal case have $V_{1,n} \cong \mathbb{R}^{n-1}$ over $\overline{M}_{1,n}$ and modulo translations we have $P_{1,n-1} \cong \mathbb{R}^n$ (careful with $\mathbb{R}^n$).
+\item In the universal case we do have a counterexamples hence: 
+$P_n$ thought of as polytope in vector space. Similarly can think of $\tilde{P}_n$ as a polytope in (possibley a vector space) (that contain $\mathbb{R}^n$) (Pic of X is T-bundle?).
+\item $P_n \subseteq \tilde{P}_n$
+\end{titlemize}
+
+\begin{titlemize}{Single curve}
+\item In normal case have ($V(G)$, $\sigma_{\phi}(G)$ and $P_n$.
+\item Generalised case: For a single curve we have ($\Sigma(G)$) and in universal have ($\tilde{P}_n)$. 
+\item Denote by $\Sigma_{\phi}$ the set of $\sigma_{\phi}(G)$.
+\item For single curve case dont have counterexample, if had can propose thickening idea. 
+\end{titlemize}
+
+\begin{titlemize}{How to show $\sigma_{\phi}(G)\in \Sigma_G$.}
+\item Ask about pages of Oda to read, focusing on compactifaction (open and properness correspond to axiom 2 and 1 for $\sigma_{\phi}(G) \in \Sigma_G$). Note in this paper $\phi$ are taken arbitrarily (can be on hyperplanes and double/triple.. intersections of hyperplanes). 
+\end{titlemize}
+
+
+\begin{titlemize}{Question}
+\item In \cite{caporaso2019combinatorics} does $\overline{P}^{g}_{X}$ coincide with our notion of $\overline{J}(X)$?
+\end{titlemize}
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+\end{document}

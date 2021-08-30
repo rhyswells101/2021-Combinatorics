@@ -1,0 +1,101 @@
+\documentclass[a3paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Combinatorics of $\tilde{P}_n$}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\begin{remark}
+See nicolas description of proposed research project 1. In particular the circuit rank of the graph.
+
+Investigate the stratification of $\overline{\mathcal{M}}_{g,n}$ by circuit rank of the dual graph or by topological type. 
+
+Circuit rank is the number of independent cycles $b_1(G)$.
+
+from wiki
+" circuit rank, cyclomatic number, cycle rank, or nullity of an undirected graph is the minimum number of edges that must be removed from the graph to break all its cycles, making it into a tree or forest. It is equal to the number of independent cycles in the graph (the size of a cycle basis).
+
+Seeextensions of the universal theta divisor.
+
+"
+
+\end{remark}
+
+\subsection{Maximally degenerate simple sheaves are spanning trees}
+
+On a nodal curve the singular locus $Sing(F)$ of a rank $1$ torsion free sheaf $F$ (where it fails to be locally free) is a subset of the nodes. For rank $1$ torsion free simple sheaves the locus where the sheaf is locally free is a connected spanning subgraph which contains a spanning tree (locally free on vertices of $G$), that is $G \setminus Sing(F)$ (where $Sing(F) \subseteq E(G)$) is a spanning subgraph of $G$ (which is only complete if $Sing(F)=\emptyset$). \\
+
+We call sheaves where $G \setminus Sing(F)$ is a spanning tree, maximally degenerate. Each spanning tree corresponds to a stable muiltidegree of a maximally degenerate sheaf. We have the following combinatorial description for rank $1$ torsion \textit{simple} sheaves.
+
+\begin{theorem}
+A rank $1$ torsion free sheaf $F$ on a nodal curve $X$ is simple if and only if $Sing(F)$ does not disconnect $X$ (or dual graph $G$). Equivalently, $F$ is simple if and only if $G \setminus Sing(F)$ is a connected spanning subgraph. In particular $F$ is simple and maximally degenerate $\iff$ $G_X \setminus Sing(F)$ is a spanning tree. 
+\end{theorem}
+
+\begin{remark}
+These maximally degenerate objects are the minimal objects of a poset of muiltidegrees of $F$.
+\end{remark}
+
+\begin{example}
+On a smooth curve, rank $1$ torsion free sheaves are locally free.\\
+
+On a nodal curve comprising of two components of $\mathbb{P}^{1}$ and one node, the ideal sheaf of the node $\mathcal{I}(N) \cong \mathcal{O}(-N)$ is rank $1$ torsion sheaf that is not locally free. Not all rank 1 torsion free sheaves are ideal sheaves.\\
+
+Additionally this nodal curve is not simple as $Aut(I(N))=(\mathbb{C}^*)^{2}$, on resolution of the node we can re-scale the line bundle independently. For a simple sheaf $F$, $Aut(F)=\mathbb{C}^{*}$.
+\end{example}
+
+
+\maketitle
+\tableofcontents
+
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+\end{document}

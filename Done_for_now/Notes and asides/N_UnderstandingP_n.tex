@@ -1,0 +1,278 @@
+
+\documentclass[a3paper,12pt]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Combinatorics of $\tilde{P}_n$}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Understanding $\tilde{P}_n$ }
+
+ Throughout we take the hypercube case where $f(\{i\})=0$ for all $i \in [n+1]$ and $f:\mathcal{P}_n^{+} \rightarrow \mathbb{N}\cup \{0\} \in \tilde{P}_n$.
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.2,angle=0]{Diagrams/DirectedGraph.jpg}  
+    \caption{Path tracing arguement}
+    \label{epdiagram}
+\end{figure}
+\end{titlemize}
+
+
+\subsection{Induction on $\tilde{P}_n$}
+
+We aim to describe the map $\tilde{P}_n \xrightarrow{\alpha_n}\tilde{P}_{n+1}$. In particular note for $f^{'} \in \tilde{P}_{n+1}$ we have 
+
+\begin{equation}
+\tilde{f}(A) \le \tilde{f}(A \cup \{n+1\}) \le \tilde{f}(A) +1.
+\end{equation}
+
+As preliminary notation define an pseudo-extension of $f$ to be as follows.
+
+\begin{definition}
+
+To pseudo-extend $f \in \tilde{P}_n$ to $f^{'}: \mathcal{P}_{n+1}^{+} \rightarrow \mathbb{N}\cup \{0\}$, define the map $\epsilon: \mathcal{P}_n^{+} \rightarrow \{0,1\}$ with $A \mapsto \epsilon(A)$ such that 
+
+$$f^{'}(A)=f(A) \text{ and } f{'}(A \cup \{n+1\}) = f(A)+\epsilon(A).$$
+
+\end{definition}
+
+\begin{remark}
+ Note there are many possible pseudo-extensions for a given $f$. We want those such that $f^{'}|_{\mathcal{P}_{n}^{+}} =f$ (See Example \ref{GoodMSA}) and $f^{'} \in \tilde{P}_{n+1}$. 
+\end{remark}
+
+
+\begin{example}\label{notMSA}
+Note $f^{'}$ need not be MSA. Consider an arbitrary map $\epsilon: \mathcal{P}_n^{+} \rightarrow \{0,1\}$ "not deduced from $f$". Take $f \in \tilde{P}_3$ to be $f(\{1,2\})=1$, $f(\{1,2,3\})=1$ and $f(\{2,3\})=0$. Take $\epsilon(\{2,3\})=1$ and $\epsilon(\{3\})=1$, else take $\epsilon(I)=0$. Then $f^{'}$ will have the values
+
+$$f^{'}(\{1,2\})=1, f^{'}(\{3,4\})=1, f^{'}(\{1,2,3\})=1, f^{'}(\{1,2,4\})=1,  f^{'}(\{2,3,4\})=1, f^{'}(\{1,2,3,4\})=1$$
+
+and $f(I)=0$ else. By considering the inequality,
+
+$$ 0 \le f^{'}(\{1,2,3,4\}) - f^{'}(\{1,2\}) - f^{'}(\{3,4\}) \le 1, $$
+
+we see that $f^{'} \notin \tilde{P}_4$. 
+
+\begin{titlemize}{Question}
+\item How do you determine which $\epsilon$, allow for a valid $f^{'} \in \tilde{P}_{n+1}$? We allow $\epsilon(A)=1$ only on those $A$ that respect $f$-minimality and $f$-maximality, so that we respect the MSA conditions on all elements of $\mathcal{P}_{n}^{+}$ not  just those containing $\{n+1\}$.
+\end{titlemize}
+
+\end{example}
+
+Following from the definition of MSA take $I \sqcup J$ to be $B$, and $A$ and $B \setminus A=A^{c}$ to be $I, J$.
+
+\begin{definition}\label{fminmax}
+For $A,B \subset [n]$ we call $A \subset B$, $f$-minimal if,
+
+$$f(B)=f(A)+f(B \setminus A)$$
+
+or $A \subset B$ to be $f$-maximal if,
+
+$$f(B)=f(A)+f(B \setminus A) +1.$$
+
+\end{definition}
+
+\begin{remark}
+By the MSA condition $f$-minimal if 
+$$0 = f(B) -f(A)- f(B \setminus A)$$ 
+and $f$-maximal if 
+$$ f(B) -f(A)- f(B \setminus A)=1.$$
+
+In figure \ref{epdiagram2} we colour the corresponding inclusion arrow of the poset $\mathcal{P}_{n}^{+}$ to be green and red respectively. In particular if $A \subseteq B$ is $f$-minimal then so is $A^{c} \subseteq B$, similarly for $f$-maximal. One can see this pictorially in figure \ref{epdiagram2} with respect to the green arrows, and the red arrows.
+\end{remark}
+
+\begin{example}
+Let $f \in \tilde{P}_4$ with $f(\{1,3\})=1$ and $f(\{1,2,3\})=1$ otherwise $f(S)=0$. We see that $f(\{1,2,3\})=f(\{1,2\})+f(\{3\})$ and so $\{1,3\}\subseteq \{1,2,3\}$ is $f$-minimal and by symmetry so is $\{2\} \subset \{1,2,3\}$. Likewise $\{1,2\} \subset \{1,2,3\}$ is $f$-maximal as $f(\{1,2,3\}) = f(\{3\})+f(\{1,2\})+1$.
+\end{example}
+
+
+\begin{lemma}\label{epsiloncontainment}
+Let $f\in \tilde{P}_n$ and if $A \subset B$ is $f$-minimal then if $\epsilon(A)=1$, then $\epsilon(B)=1$. Similary if $A \subseteq B$ is $f$-maximal then if $\epsilon(B)=1$, then $\epsilon(A)=1$.
+\end{lemma}
+
+\begin{proof}
+As $\tilde{f}$ is MSA so,\\
+
+(ISSUE: We dont know if $f^{'}$ is MSA yet, because if we show Exercise \ref{extension_is_MSA} then this is contradicted by example \ref{notMSA}). (Here $\tilde{f}$ means $f^{'}$.)
+
+$$\tilde{f}(B \cup \{n+1\}) \ge \tilde{f}(A \cup \{n+1\}) +\tilde{f}(B\setminus A)$$
+
+by definition \ref{extension} we have 
+
+$$f(B) + \epsilon(B) \ge f(A) +\epsilon(A) +f(B \setminus A)$$
+
+in particular as $A \subseteq B$ is $f$-minimal so 
+
+$$\epsilon(B) \ge \epsilon(A).$$
+
+Similarly for if $A \subset B$ is $f$-maximal.
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/lemma_epsilon_fminimal.jpg}  
+    \caption{}
+    \label{epdiagram2}
+\end{figure}
+
+\end{proof}
+
+
+Consider $f$ and the poset $ \mathcal{P}_n^{+}$ which is ordered by inclusion. For a given $\epsilon$ of $f$ denote the set of $A \in \mathcal{P}_n^{+}$ such that $\epsilon(A)=1$ to be $\epsilon^{-1}(1)$. By lemma \ref{epsiloncontainment}, the set $\epsilon^{-1}(1)$ with respect to the poset ordering is upward closed under $f$-minimality and downward closed under $f$-maximality. Denote the set of all sets $\epsilon^{-1}(1)$ as $E^{-1}(1)$.\\
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55
+
+
+
+\begin{definition}\label{extension}
+(This definition may need reworking
+)\\
+
+Let $f \in \tilde{P}_n$ and define $\epsilon_f: \mathcal{P}_n^{+} \rightarrow \{0,1\}$ with $A \mapsto \epsilon_{f}(A)$ such that for $A \in \epsilon^{-1}(1) $ for $\epsilon^{-1}(1) \in E^{-1}(1)$. The map $\tilde{P}_n \xrightarrow{\alpha_n}\tilde{P}_{n+1}$ takes $f \mapsto \tilde{f}$ such that,
+
+$$\tilde{f}(A)=f(A) \text{ and } \tilde{f}(A \cup \{n+1\}) = f(A)+\epsilon_{f}(A).$$
+
+
+We call $\tilde{f}$ an extension of $f$ by $\epsilon_f$.
+
+\end{definition}
+
+
+
+
+\begin{remark}
+ By definition \ref{extension}, $\tilde{f}$ are given by the $\epsilon_f$ maps and $\epsilon_f$ are determined by where they take the value $1$. We denote the set of all extensions of $f$ as 
+
+$$Ext(f) = \{\tilde{f} \mid \alpha_n(f) = \tilde{f} \text{ for } A\in \epsilon^{-1}(1) \in E^{-1}(1)\}$$
+
+and
+
+$$\tilde{P}_{n+1} = \bigsqcup_{f \in \tilde{P}_n} Ext(f)$$
+\end{remark}
+
+\begin{example}\label{GoodMSA}
+Consider $f \in \tilde{P}_2$ with $f(\{1,2\})=0$ and take $\epsilon(\{1\})=1$, $\epsilon(\{1,2\})=1$ and $\epsilon(\{2\})=0$. Then we have the following extension $\tilde{f} \in \tilde{P}_3$ with,
+\begin{align*}
+\tilde{f}(\{1,2\}) &= f(\{1,2\}) =0,\\
+\tilde{f}(\{1,3\}) &= f(\{1\})+\epsilon(\{1\}) =1,\\
+\tilde{f}(\{2,3\}) &= f(\{2\})+\epsilon(\{2\})=0,\\
+\tilde{f}(\{1,2,3\}) &= f(\{1,2\})+\epsilon(\{1,2\})=1.\\
+\end{align*}
+
+\end{example}
+
+
+
+
+\begin{exercise}\label{extension_is_MSA}
+Given $\epsilon_f$ of $f \in \tilde{P}_n$ show that $\tilde{f}$ is MSA.\\
+
+(Needs to be after defining $\epsilon^{-1}(1)$ as otherwise $\tilde{f}$ is not MSA by example \ref{notMSA}). 
+
+
+\end{exercise}
+
+\begin{proof}
+We aim to show $\tilde{f}$ is MSA for all $I,J \in \mathcal{P}_{n+1}^{+}$. Focusing on connected subsets this is equivalent to the case for $A \subseteq B$ such that $A \in \mathcal{P}_n^{+}$ and $B \in \mathcal{P}_{n+1}^{+}$ where,
+
+$$0 \le \tilde{f}(B) - \tilde{f}(A)  - \tilde{f}(B \setminus A)\le 1.$$
+
+Focusing on the element $\{n+1\}$ this in turn reduces to the special case for $A \subseteq A \cup \{n+1\} $ with,
+
+\begin{equation}\label{simpMSA}
+0 \le \tilde{f}(A \sqcup \{n+1\}) - \tilde{f}(A)  - \tilde{f}(\{n+1\})\le 1.
+\end{equation}
+
+Hence we resolve to show (\ref{simpMSA}) (note in this case $f(A)=\tilde{f}(A)$). By definition \ref{extension} we have,
+
+$$f(A)= \tilde{f}(A) \le \tilde{f}(A \cup \{n+1\}) \le \tilde{f}(A)+1=f(A)+1.$$ 
+
+This gives equation (\ref{simpMSA}). 
+
+\end{proof}
+
+\begin{titlemize}{Question}
+\item Does example \ref{notMSA} not contradict exercise \ref{extension_is_MSA}?
+\end{titlemize}
+
+
+
+
+\hline 
+
+
+\begin{proof}
+As $\tilde{f}$ is MSA, take
+
+$$0=\tilde{f}(B \cup \{n+1\}) - \tilde{f}(A \cup \{n+1\}) -\tilde{f}(B\setminus A)$$
+
+otherwise we have a contradiction by definition of $\epsilon$, as $\epsilon(A)=1$ and $A \subset B$ is $f$-minimal. By definition of $\tilde{f}$ we have 
+
+$$f(B) + \epsilon(B) \ge f(A) +\epsilon(A) +f(B \setminus A)$$
+
+in particular as $A \subseteq B$ is $f$-minimal so 
+
+$$\epsilon(B) = \epsilon(A).$$
+
+Similarly for if $A \subset B$ is $f$-maximal.
+\end{proof}
+
+
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+\end{document}
+

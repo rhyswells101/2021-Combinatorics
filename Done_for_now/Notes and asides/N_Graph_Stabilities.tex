@@ -1,0 +1,400 @@
+\documentclass[a3paper,12pt]{article}
+
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{tikz-cd}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathtools}
+ \usepackage{float}
+\usepackage{amsthm}
+\usepackage{cite}
+\usepackage{datetime} % British format dates
+\usepackage[cm]{fullpage}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{stackrel,amssymb,amsmath}
+\usepackage[nottoc]{tocbibind}
+\usepackage{rotating}
+\usepackage[autostyle]{csquotes}
+\usepackage{natbib}
+\usepackage{graphicx}
+%\usepackage{natbib}
+\usepackage{graphicx}
+
+\newtheorem{problem}{Problem}
+\newtheorem{attempt}{Attempt}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+%\theoremstyle{indented}
+\newtheorem*{remark}{Remark}
+\newenvironment{titlemize}[1]{%
+  \paragraph{#1}
+  \begin{itemize}}
+  {\end{itemize}}
+  
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]  
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[section]  
+
+
+
+\title{Personal Notes on Graph stabilites}
+\author{Rhys Wells}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+
+
+\section{Notes}
+
+The main parts of the examples from here have been distilled into 2N_Graph_stabilities. Some questions have been left. Need further cleaning in particular the questions and to put away notes that Im not using any more. 
+
+\begin{titlemize}{Old axiom two for $\sigma(G)$}
+\item
+    \item For a fixed spanning tree $\Gamma$ of $G$ there exists a set,
+    
+    $$\sigma^{\circ}(\Gamma)=\{\bold{d}(\Gamma) \in \mathbb{Z}^{Vert(G)} \mid \sum d(\Gamma) =-b_1(G)\}$$
+    
+    such that for all orientations $s:Edges(G \setminus \Gamma) \rightarrow Vert(G)$,
+    
+    $$\bold{d}(\Gamma) + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} \in \sigma(G).$$
+    
+    For each $\Gamma$ we denoted this set of elements as
+
+$$\sigma(\Gamma):=\left\{\bold{d}(\Gamma) + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} \right\}.$$
+
+In particular we have the following decomposition,
+
+$$\sigma(G)= \bigcup_{\Gamma \subseteq G } \sigma(\Gamma).$$
+\end{titlemize}
+
+\subsection{Vine Curves}
+
+
+
+\begin{example}
+Vine curves with are curves have $G$ with two components and $k$ edges. Let $G_0$ be a single vertex, then  
+
+$${\# (E(G \setminus G_0) \cap E(G \setminus G_0^{c}) )}=k.$$
+
+As $\bold{d}=(d,-d)$ enough to consider only $d$. In particular we have the Oda-inequaliy,
+
+\begin{equation}\label{vineOda}
+|d-\phi|<\frac{k}{2}
+\end{equation}
+
+We can ask when is $\bold{d}$, $\phi$-stable? Equation (\ref{vineOda}) requires us to take $d$ to be the $k$ closest integers to $\phi$. If $k$ is even then $\phi$ is non-degenerate if and only if $\phi \notin \mathbb{Z}$. If $k$ is odd $\phi$ is non-degenerate if and only if $\phi \in \frac{1}{2}+\mathbb{Z}$.
+
+Where spanning trees are a single edge with $|E(G \setminus \Gamma)|=k-1$, there are $2^{k-1}$ choices of orientations in proposition \ref{axiom2}, $b_1(G)=k-1$. For $d \in \mathbb{Z}$ every $\sigma(G)$ (by definition \ref{axioms12}) is of the form 
+
+$$\sigma(G)=\left\{ (d,-d), (d+1,-d-1),\dots,(d+k-1,-d-k+1) \right\}.$$
+
+\begin{remark}
+ When $G$ has two vertices it is easy to describe $\sigma(G)$ as there is only "one direction to translate" on action of $J(G)$
+\end{remark}
+
+Take $\phi$ to be, 
+$$\phi = (d+ \frac{k-1}{2}, -d -\frac{k-1}{2}).$$
+
+By question \ref{qu1} there are no Oda inequalities. Checking axiom 2 we have 
+
+$$\phi_{\Gamma}(v_1,v_2) = (d,-d-k+1)$$
+
+which are integers so $d(\Gamma,\phi)=\phi_{\Gamma}$. Considering all orientations on $G \setminus \Gamma$ we have
+
+$$d(\Gamma,\phi)(v_1,v_2) + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} (v_1,v_2) = (d,-d-k+1) + (a,k-1-a).$$
+
+Only for $G_0=G$ is 
+
+$${\# (E(G \setminus G_0) \cap E(G \setminus G_0^{c}) )}=k,$$
+
+i.e there are no inequalities of the form (23) as $d \in S(G)$ and there are no other proper $G_0$.
+
+The tuple given by 
+
+$$ \frac{1}{2}\# \{l : l \in Edges(G\setminus \Gamma), v \text{ is the endpoint of } l \} (v_1,v_2) = (\frac{k-1}{2},\frac{k-1}{2}).$$
+
+And the tuple given by 
+
+$$\sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)}(v_1,v_2)$$
+
+for $k$ nodes sketches the following,
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/delta.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+
+\end{example}
+
+\subsection{Necklace curves}
+
+\begin{exercise}
+Understand and write up a proof for the case of necklace curves.
+\end{exercise}
+
+\begin{exercise}
+For $\phi \in Q_G$ show $S(d,\sigma)=S_\phi $ i.e the generalised stability in the genus $1$ case mentioned in the \cite[Section 3]{pagani2020geometry}. Why does taking the average work ? Automorphisms transitive of vertices. 
+\end{exercise}
+
+Necklace curves are denoted as $I_n$ with $n$ components. The following relation is deduced from \cite[Definition 2.5]{pagani2020geometry} which reduces to definition \ref{linebundleinequal} for line bundles. In the case of necklace curves we have $1$ in the numerator as each cut for a necklace curve gives $2$ edges.  
+
+\begin{definition}
+Let $\phi \in V(X)$, the $\phi$-(semi)stable multidegrees for a necklace curve are given by the following set,
+$$ S_{\phi} = \left\{ d \mid  \Bigl|{\sum_{i \in I_0} d_i - \phi_i \Bigr| \le 1,\: \forall \: \emptyset \subsetneq I_0 \subsetneq I\right\} \subseteq S(X)$$
+
+where each $I_0$ is a consecutive set.
+\end{definition}
+
+\begin{remark}
+In particular we have an $I_0$ for each component. So either $d_i = \lfloor \phi_i \rfloor$ or $d_i = \lceil \phi_i \rceil$. Additionally each necklace has $\binom{n}{2}$ cuts.
+\end{remark}
+
+
+
+\begin{exercise}
+For a necklace curve $I_n$, if $\phi$ is non-degenerate show $|S_\phi|=n$.
+\end{exercise}
+\begin{proof}
+For $\Gamma_{I_3}$ we only need to consider $|d_i-\phi_i|<1$ as $\underline{d} \in S(G)$ and $\phi \in V(G)$.
+\end{proof}
+
+
+For a necklace curve, let $\sigma \in S_n$ be a labelling of nodes and $\underline{d} \in S(G)$ we have,
+$$S(d,\sigma) = \{\sigma^{J}(d) \mid J \in {\{1,\dots,|I|\}\} \subseteq S(X).$$
+
+\begin{remark}
+Different $d_i$ and $\sigma_i$ give the same set $S(d,\sigma)=S(d_i,\sigma_i)$. 
+\end{remark}
+
+\begin{example}
+Consider $I_3$. For $\phi=\frac{1}{3},\frac{1}{3},\frac{-2}{3}$, lableing the graph anti clockwise starting from $v_1$ as the left corner.then using the oda inequalities, 
+
+$$\sigma_{\phi_1} (G)=\{(0,0,0), (1,0,-1), (0,1,-1)\}$$
+
+If $\phi_2=(-\frac{1}{3},-\frac{1}{3},\frac{2}{3})$,
+
+then 
+$$\sigma_{\phi_2} (G)=\{(0,0,0), (-1,0,1), (0,-1,1)\}$$
+
+
+\end{example}
+
+\begin{titlemize}{Question}
+\item How is the $+1,-1$ on vertices related to the generalise stability and in particular to axiom 2? 
+\end{titlemize}
+
+\begin{example}
+
+\end{example}
+
+\begin{remark}
+For a necklace curve we have,
+
+$$\sum_{v \in Vert(G)} d(\Gamma,\phi)(v)+1 = \sum_{v \in Vert(G)} d(v)$$
+
+\end{remark}
+
+\begin{example}
+Necklace curves have the following properties, $b_1(G)=1$. On \cite[p.17]{pagani2020geometry} it is noted that $S(\sigma,d)=\sigma(G)$. After labelling $Aut(G)= \mathbb{Z}/ n \mathbb{Z}$. The graph $G$ has $n$ spanning trees, in particular one up to rotation. For the Oda-inequalities it is enough to consider $I_0$ up to rotation. There is only one edge in $G \setminus \Gamma$ and so only 2 orientations.
+
+For the tuple (up to relabelling and choice of $\Gamma$ for positioning)
+
+$$\sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)} \underline{v} = (1,0,\dots,0) \text{ or } (0,0,\dots,1) $$
+
+and 
+
+$$ \frac{1}{2}\# \{l : l \in Edges(G\setminus \Gamma), v \text{ is the endpoint of } l \} (\underline{v}) = (\frac{1}{2},0,\dots,0,\frac{1}{2}).$$
+
+For the decomposition
+
+$$\sigma_G(\phi)= \bigcup_{\Gamma \subseteq G } \sigma(\Gamma,\phi)$$
+
+for $I_3$ the space decomposes as,
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/axisdelta.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+\end{example}
+
+\subsection{Mixed graph}
+\begin{exercise} Show there exists a $\phi$ for $\sigma(G)$ of G for the simplest case of a graph where we mix the necklace and vine curve cases. (The $\phi$ case is in \cite[Example 5.4]{kass2019stability})
+\end{exercise}
+\begin{proof}
+Need to describe $\sigma(G)$, then make a choice of $\phi$. I dont think itll be a cleaning written as in vine of necklace cases. look for counterexample.
+$|\sigma_G|=5$ as there are $5$ spanning trees.
+\end{proof}
+
+\begin{example}
+
+Consider the graph $G$,
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/graphcurve.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+which has the curve,
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/graphcurveCurve.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+We have $Aut(G)=\mathbb{Z}/2\mathbb{Z}$ and $J(G)=\mathbb{Z}/5\mathbb{Z}$. For $G$ we have the following $\phi$-inequalities
+
+$$|d_1-\phi_1|<\frac{3}{2},|d_2-\phi_2|<1, |d_3-\phi_3|<\frac{3}{2}.$$
+
+Describing $\sigma(G)$ is difficult as there are "more directions" to add $t\in J(G)$ as compared to the vine curve case.
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/axiom2graphcurve.jpg}  
+    \caption{}
+    \label{}
+\end{figure}
+
+\begin{remark}
+Understanding $\sigma(G)$ will give a better reasoning for the choice of $\phi$. How do the conditions on $\sigma(G)$ give $\phi$ that satisfy the $\phi$-inequalities?
+\end{remark}
+
+We have $\sigma(G)$ decomposing as,
+
+$$\sigma_G(\phi)= \bigcup_{\Gamma \subseteq G } \sigma(\Gamma,\phi)$$
+
+with overlap of $d$ for different $\Gamma$. The trees of $G$ are,
+
+      \begin{figure}[H] 
+    \centering
+ \includegraphics[scale=0.3,angle=0]{Diagrams/treesofcurve.jpg}  
+    \caption{}
+    \label{epdiagram}
+\end{figure}
+
+
+\begin{titlemize}{Question}
+\item Why do we need a format for $\sigma(G)$. Could we take 
+
+$$(d_1,d_2,-d_1-d_2)$$
+
+and then translate by $t \in J(G)$ and take the average the same as $I_5$. The issue is, these $d \in \sigma(G)$ are not near with respect to axiom 2, i.e why not take
+
+$$(d_1+1,d_2-1,-d_1-d_2) \in S(G).$$
+\item As $|\sigma(G)|=|J(G)|$ when taking the average should we be dividing by $|J(G)|$ instead of the number of vertices?
+
+
+
+\end{titlemize}
+\end{example}
+
+\section{Material of note}
+
+\subsection{generalised stability for a polarisation?}
+
+\begin{definition}
+Let $\phi \in Q_G$ and $\Gamma$ a spanning tree of $G$,
+define 
+
+\begin{align*}
+\phi_{\Gamma} \colon Vert(G) &\to \mathbb{R} \\
+v &\mapsto \phi(v) - \frac{1}{2}\# \{l : l \in Edges(G\setminus \Gamma), v \text{ is the endpoint of } l \}
+\end{align*}
+
+and we define the degree as,
+
+\begin{align*}
+d(\Gamma,\phi): Vert(G) &\rightarrow \mathbb{Z} \\
+v &\mapsto \{\text{the closest integer approximation of }\phi_\Gamma(v) \}.
+\end{align*}
+\end{definition}
+
+\begin{remark}
+$$\sum_{v \in Vert(G)} d(\Gamma,\phi)(v) = - \#Edges(G \setminus \Gamma) = -b_1(G).$$
+
+
+\end{remark}
+
+\begin{proposition}\label{axiom2}
+
+Let $\phi\in Q_G$, the set $\sigma_G(\phi)$ satisfies the following for all spanning trees $\Gamma$ of $G$, fixing $\Gamma$ we have for all orientations 
+
+$$s:Edges(G \setminus \Gamma) \rightarrow Vert(G)$$
+such that for $\underline{v} \in Vert(G)$,
+
+$$d(\Gamma,\phi)(\underline{v}) + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)}(\underline{v}) \in \sigma_G(\phi).$$
+
+\end{proposition}
+
+
+Denoted this set of elements as
+
+$$\sigma(\Gamma,\phi):=:S_{\Gamma}(\phi) = \left\{d(\Gamma,\phi)(\underline{v}) + \sum_{l \in E(G\setminus \Gamma)} \delta _{s(l)}(\underline{v}) \right\}$$
+
+additionally we have
+
+$$\sigma_G(\phi)= \bigcup_{\Gamma \subseteq G } \sigma(\Gamma,\phi).$$
+ 
+\begin{theorem}
+Every fine compactified Jacobian of $X$ is isomorphic in non-natural way to $X$.
+\end{theorem}
+
+\section{Notes}
+
+$$
+S(X) = \{d : I \rightarrow \mathbb{Z} \mid \sum_{i \in I} d_i =0 \} \subseteq \mathbb{Z}^{I}$$ 
+
+where $S(X) \subseteq V(X)$ for
+
+$$V(X) = \{\phi : I \rightarrow \mathbb{R} \mid \sum_{i \in I} \phi_i =0\} \subseteq \mathbb{R}^{I}.$$
+
+The space $V(X)$ contains the degenerate locus of hyperplanes and $V(X)=S(X)\otimes_{\mathbb{Z}}\mathbb{R}$. Analogously f
+
+\subsection{Notes}
+
+Non-example notes
+
+Sage has built in functions to do computations on sandpile group and so $J(G)$ (which are a generalisation of undirected graphs.)
+
+Using jacobian represenation giives the superstables in sage. 
+
+\hline
+
+\begin{remark}
+By Dhars burning in \cite{corry2018divisors} there is a bijection between spanning trees and superstables. 
+\end{remark}
+
+\hline 
+
+\maketitle
+\tableofcontents
+
+
+
+\printindex
+
+\bibliographystyle{alpha}
+\bibliography{bibtex}
+
+
+
+\end{document}
